@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import LoginForm from '../components/form/LoginForm';
 
-import { Container, Content } from 'native-base';
+import { Container, Content, Header, Title } from 'native-base';
 
 export default class LoginContainer extends Component {
 
@@ -9,6 +9,9 @@ export default class LoginContainer extends Component {
     return (
       <Container>
         <Content>
+          <Header>
+            <Title>Log In to Jira</Title>
+          </Header>
           <LoginForm
             handleLoginButton={this.props.handleLoginButton}
             handleLoginInput={this.props.handleLoginInput}
