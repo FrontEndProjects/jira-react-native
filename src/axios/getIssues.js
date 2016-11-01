@@ -13,6 +13,7 @@ export default function (username, password, obj) {
     obj.setState({
       progress: false,
       isLogged: true,
+      visible: false,
       data: response.data.issues
     });
     console.log(obj.state.data);
@@ -22,7 +23,8 @@ export default function (username, password, obj) {
     let status = error.response.status === 401 ? 'Incorrect data' : '';
     obj.setState({
       errorText: `${status}`,
-      progress: false
+      progress: false,
+      visible: false
     });
   });
 }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {Card, CardItem, Text, Container, Content } from 'native-base';
+import {Card, CardItem, Text, Container, Content, Thumbnail } from 'native-base';
 
 export default class Task extends Component {
   render() {
@@ -9,8 +9,13 @@ export default class Task extends Component {
       <Container>
         <Content>
           <Card>
-            <CardItem>
+            <CardItem header>
               <Text>{this.props.title}</Text>
+            </CardItem>
+            <CardItem>
+              <Text>
+
+              </Text>
             </CardItem>
           </Card>
         </Content>
