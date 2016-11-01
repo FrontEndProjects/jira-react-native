@@ -1,18 +1,20 @@
 import React, {Component} from 'react';
 
-import {Card, CardItem, Text} from 'native-base';
+import {Card, CardItem, Text, Container, Content } from 'native-base';
 
 export default class Task extends Component {
-  render () {
+  render() {
     let href = 'https://jira.nitro-digital.com/browse/' + this.props.link;
     return (
-      <Card
-      >
-        <CardItem
-        >
-          <Text>{this.props.title}</Text>
-        </CardItem>
-      </Card>
+      <Container>
+        <Content>
+          <Card>
+            <CardItem>
+              <Text>{this.props.title}</Text>
+            </CardItem>
+          </Card>
+        </Content>
+      </Container>
     );
   }
 }

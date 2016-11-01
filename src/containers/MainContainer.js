@@ -26,13 +26,13 @@ export default class MainContainer extends Component {
 
   handleLoginInput (e) {
     this.setState({
-      login: e.target.value
+      login: e
     });
   }
 
   handlePasswordInput (e) {
     this.setState({
-      password: e.target.value
+      password: e
     });
   }
 

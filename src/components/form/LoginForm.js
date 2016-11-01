@@ -9,19 +9,20 @@ export default class LoginForm extends Component {
         <InputGroup>
           <Input
             placeholder="Enter your login"
-            onChange={this.props.handleLoginInput}
+            onChangeText={this.props.handleLoginInput}
           />
         </InputGroup>
         <InputGroup>
           <Input
             placeholder="Enter your password"
-            onChange={this.props.handlePasswordInput}
+            secureTextEntry={true}
+            onChangeText={this.props.handlePasswordInput}
           />
         </InputGroup>
         <InputGroup>
           <Input
             placeholder="Enter your link"
-            onChange={this.props.handleLoginInput}
+            onChangeText={this.props.handleLoginInput}
           />
         </InputGroup>
         <Button block primary onPress={this.props.handleLoginButton}>Login</Button>

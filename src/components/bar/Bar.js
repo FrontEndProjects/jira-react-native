@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Container, Content, Header } from 'native-base';
+import { Container, Content, Header, Title } from 'native-base';
 
 export default class Bar extends Component {
 
@@ -16,7 +16,7 @@ export default class Bar extends Component {
       <Container>
         <Content>
           <Header>
-            {this.props.user}
+            <Title>{this.props.user}</Title>
           </Header>
 
         </Content>

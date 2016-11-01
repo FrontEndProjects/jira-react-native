@@ -19,8 +19,6 @@ export default class ContentContainer extends Component {
         link={elem.key}
         reporter={elem.fields.reporter.displayName}
         reporterEmail={elem.fields.reporter.emailAddress}
-        created={dateFormat(elem.fields.created, 'dddd, dS mmmm yyyy, h:MM:ss')}
-        updated={dateFormat(elem.fields.uptaded, 'dddd, dS mmmm yyyy, h:MM:ss')}
         project={elem.fields.project.name}
         key={idx}
       />;
@@ -29,9 +27,6 @@ export default class ContentContainer extends Component {
     return (
       <Container>
         <Content>
-          <Text>asdasdsdasd</Text>
-          <Bar user={this.props.username}/>
-          <TaskHeader issuesNumber={issuesNumber}/>
           {Cards}
         </Content>
       </Container>
