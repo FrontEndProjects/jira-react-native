@@ -4,13 +4,10 @@ import getIssues from '../axios/getIssues';
 import LoginContainer from './LoginContainer';
 import ContentContainer from './ContentContainer';
 
-import { Container, Content } from 'native-base'
+import { Container, Content } from 'native-base';
 
 import Spinner from 'react-native-loading-spinner-overlay';
-import {
-  View
-} from 'react-native';
-
+import { View } from 'react-native';
 
 export default class MainContainer extends Component {
 
@@ -30,7 +27,6 @@ export default class MainContainer extends Component {
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
     this.handleLoginButton = this.handleLoginButton.bind(this);
   }
-
 
   handleLoginInput (e) {
     this.setState({
@@ -60,8 +56,7 @@ export default class MainContainer extends Component {
           <Spinner visible={this.state.visible}/>
         </View>
       );
-    }
-    else if ((!this.state.progress) && (!this.state.isLogged)) {
+    } else if ((!this.state.progress) && (!this.state.isLogged)) {
       return (
         <Container>
           <Content>
@@ -74,8 +69,7 @@ export default class MainContainer extends Component {
           </Content>
         </Container>
       );
-    }
-    else if ((!this.state.progress) && (this.state.isLogged)) {
+    } else if ((!this.state.progress) && (this.state.isLogged)) {
       return (
         <Container>
           <Content>

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
-import {Card, CardItem, Text, Container, Content, Thumbnail } from 'native-base';
+import { Card, CardItem, Text, Container, Content } from 'native-base';
 
 export default class Task extends Component {
-  render() {
+  render () {
     let href = 'https://jira.nitro-digital.com/browse/' + this.props.link;
     return (
       <Container>

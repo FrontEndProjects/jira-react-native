@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
-import TaskHeader from '../components/taskHeader/TaskHeader';
 import Task from '../components/task/Task';
-import Bar from '../components/bar/Bar';
 
 import dateFormat from 'dateformat';
 
-import {Container, Content, Text} from 'native-base';
+import { Container, Content } from 'native-base';
 
 export default class ContentContainer extends Component {
 
