@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Task from '../components/task/Task';
 
 import getHours from '../axios/getHours';
-import { Container, Content } from 'native-base';
+import { Container, Content, Text } from 'native-base';
 
 export default class ContentContainer extends Component {
 
@@ -31,8 +31,10 @@ export default class ContentContainer extends Component {
   render () {
     let issues = this.props.issues;
     let that = this;
+    let totalMinutes = 0;
     let Cards = issues.map((elem, idx) => {
       let minutes = that.getTimeForIssue(elem.id);
+      totalMinutes += minutes;
       return <Task
         title={elem.fields.summary}
         avatar={elem.fields.reporter.avatarUrls['32x32']}
@@ -49,6 +51,9 @@ export default class ContentContainer extends Component {
 
     return (
       <Container>
+        <Content>
+          <Text>Total time worked (open issues today): {totalMinutes} minutes</Text>
+        </Content>
         <Content>
           {Cards}
         </Content>
