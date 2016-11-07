@@ -9,17 +9,14 @@ export default function (username, password, obj) {
     }
   })
   .then(response => {
-    console.log(response);
     obj.setState({
       progress: false,
       isLogged: true,
       visible: false,
       data: response.data.issues
     });
-    console.log(obj.state.data);
   })
   .catch(error => {
-    console.log(error);
     let status = error.response.status === 401 ? 'Incorrect data' : '';
     obj.setState({
       errorText: `${status}`,

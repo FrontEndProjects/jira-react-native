@@ -76,6 +76,7 @@ export default class MainContainer extends Component {
             <ContentContainer
               issues={this.state.data}
               username={this.state.login}
+              password={this.state.password}
             />
           </Content>
         </Container>

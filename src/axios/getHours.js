@@ -1,5 +1,17 @@
 import axios from 'axios';
 
+function createArrayWithTaskAndHours (data) {
+  const arr = [];
+  const len = data.length;
+
+  for (let i = 0; i < len; i++) {
+    let secondsWorked = data[i].timeSpentSeconds;
+    let id = data[i].issue.id;
+    arr.push([id, secondsWorked]);
+  }
+  return arr;
+}
+
 export default function (username, password, obj) {
   return axios({
     url: 'https://jira.nitro-digital.com/rest/tempo-timesheets/3/worklogs/',
@@ -9,20 +21,12 @@ export default function (username, password, obj) {
     }
   })
   .then(response => {
-    console.log(response);
+    const arr = createArrayWithTaskAndHours(response.data);
     obj.setState({
-      progress: false,
-      isLogged: true,
-      data: response.data.issues
+      arrWithTimes: arr
     });
-    console.log(obj.state.data);
   })
   .catch(error => {
     console.log(error);
-    let status = error.response.status === 401 ? 'Incorrect data' : '';
-    obj.setState({
-      errorText: `${status}`,
-      progress: false
-    });
   });
 }
