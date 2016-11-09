@@ -12,7 +12,7 @@ import com.facebook.react.shell.MainReactPackage;
 import java.util.Arrays;
 import java.util.List;
 
-import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
+import com.evollu.react.fcm.FIRMessagingPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -26,7 +26,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-          new ReactNativePushNotificationPackage()
+          new FIRMessagingPackage()
       );
     }
   };

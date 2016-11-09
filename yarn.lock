@@ -4260,6 +4260,10 @@ react-native-easy-grid@0.1.5:
   dependencies:
     lodash "^4.11.1"
 
+react-native-fcm:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-fcm/-/react-native-fcm-2.3.2.tgz#e2bf2a403f48997b33d0e92533408986a6ecf53c"
+
 react-native-keyboard-aware-scroll-view@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/react-native-keyboard-aware-scroll-view/-/react-native-keyboard-aware-scroll-view-0.2.0.tgz#d9a94b358cbf92693750b16b4364d64d70060f20"
@@ -4269,10 +4273,6 @@ react-native-keyboard-aware-scroll-view@0.2.0:
 react-native-loading-spinner-overlay@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/react-native-loading-spinner-overlay/-/react-native-loading-spinner-overlay-0.3.0.tgz#3659c7c35523087e8db8f04c9e526d519f907b2b"
-
-react-native-push-notification:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-2.2.0.tgz#67123e4bbe22344142110c1849d9e9452ea8940c"
 
 react-native-vector-icons@2.0.x:
   version "2.0.3"
