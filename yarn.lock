@@ -4266,6 +4266,14 @@ react-native-keyboard-aware-scroll-view@0.2.0:
   dependencies:
     react-timer-mixin "^0.13.3"
 
+react-native-loading-spinner-overlay@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-loading-spinner-overlay/-/react-native-loading-spinner-overlay-0.3.0.tgz#3659c7c35523087e8db8f04c9e526d519f907b2b"
+
+react-native-push-notification:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-2.2.0.tgz#67123e4bbe22344142110c1849d9e9452ea8940c"
+
 react-native-vector-icons@2.0.x:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-2.0.3.tgz#617c41109d943af7a540abf04c8f4a591004209a"
