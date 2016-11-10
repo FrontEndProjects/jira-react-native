@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Task from '../components/task/Task';
+import TopBar from '../components/topbar/TopBar';
 
 import getHours from '../axios/getHours';
 import { Container, Content, Text } from 'native-base';
@@ -19,7 +20,7 @@ export default class ContentContainer extends Component {
 
   getTimeForIssue (issueId) {
     let timeWorked = 0;
-    let that = this;
+    const that = this;
     for (item of that.state.arrWithTimes) {
       if (item[0] == issueId) {
         timeWorked += item[1];
@@ -28,13 +29,17 @@ export default class ContentContainer extends Component {
     return timeWorked/60;
   }
 
+  getAllLoggedTime () {
+    const that = this;
+    return that.state.arrWithTimes.reduce( ((a, b) => a + b[1]), 0)/60;
+  }
+
   render () {
     let issues = this.props.issues;
     let that = this;
-    let totalMinutes = 0;
+    let allTimeLogged = that.getAllLoggedTime(); 
     let Cards = issues.map((elem, idx) => {
       let minutes = that.getTimeForIssue(elem.id);
-      totalMinutes += minutes;
       return <Task
         title={elem.fields.summary}
         avatar={elem.fields.reporter.avatarUrls['32x32']}
@@ -47,12 +52,12 @@ export default class ContentContainer extends Component {
         project={elem.fields.project.name}
         key={idx}
       />;
-    });
+      });
 
     return (
       <Container>
         <Content>
-          <Text>Total time worked (open issues today): {totalMinutes} minutes</Text>
+          <TopBar allTimeLogged={allTimeLogged} />
         </Content>
         <Content>
           {Cards}
