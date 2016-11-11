@@ -1,5 +1,23 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+  bar: {
+    backgroundColor: 'steelblue', 
+    padding: 2,
+    height: 5,
+    marginTop: 8,
+    marginBottom: 8,
+  },
+  rest: {
+    backgroundColor: 'grey', 
+    padding: 2,
+    height: 5,
+    marginTop: 8,
+    marginBottom: 8,
+  }
+
+})
 
 export default class TopBar extends Component {
 
@@ -8,11 +26,13 @@ export default class TopBar extends Component {
   }
 
   render () {
+    let timeInPercent = this.props.allTimeLogged / 360;
     return (
-      <View>
+      <View >
         <Text>You already have worked for: {this.props.allTimeLogged} minutes</Text>
-        <View style={{flexDirection: 'row', backgroundColor: 'skyblue', height: 5, margin: 20}} >
-          <View style={{flex: 0.8, backgroundColor: 'green', height: 3}} />
+        <View style={{flex: 1, flexDirection: 'row'}}>
+          <View style={[ styles.bar, {flex: timeInPercent} ]} />
+          <View style={[ styles.rest, {flex: 1 - timeInPercent} ]} />
         </View>
       </View>
     );
