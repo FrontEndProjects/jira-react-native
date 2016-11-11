@@ -3,11 +3,14 @@ import getIssues from '../axios/getIssues';
 
 import LoginContainer from './LoginContainer';
 import ContentContainer from './ContentContainer';
+import SettingsContainer from './SettingsContainer';
 
-import { Container, Content } from 'native-base';
+import { Container, Content, Tabs } from 'native-base';
 
 import Spinner from 'react-native-loading-spinner-overlay';
 import { View } from 'react-native';
+
+import myTheme from '../../Themes/myTheme';
 
 export default class MainContainer extends Component {
 
@@ -73,11 +76,17 @@ export default class MainContainer extends Component {
       return (
         <Container>
           <Content>
-            <ContentContainer
-              issues={this.state.data}
-              username={this.state.login}
-              password={this.state.password}
-            />
+            <Tabs theme={myTheme}>
+              <ContentContainer
+                tabLabel='Tasks'
+                issues={this.state.data}
+                username={this.state.login}
+                password={this.state.password}
+              />
+              <SettingsContainer
+                tabLabel='Settings'
+              />
+            </Tabs>
           </Content>
         </Container>
       );

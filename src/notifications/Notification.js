@@ -22,7 +22,7 @@ export default class Notification extends Component {
     });
 
     FCM.scheduleLocalNotification({
-      fire_date: new Date().getTime() + 10000,
+      // fire_date: new Date().getTime() + 10000,
       id: 'user_notification1',
       body: 'test',
       title: 'test',
