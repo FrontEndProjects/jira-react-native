@@ -1,11 +1,23 @@
 import React, {Component} from 'react';
+import { Linking } from 'react-native';
 
 import { Card, CardItem, Text, Container, Content, Button } from 'native-base';
 
 export default class Task extends Component {
 
+  handleClick = () => {
+    const href = 'https://jira.nitro-digital.com/browse/' + this.props.link;
+
+    Linking.canOpenURL(href).then(supported => {
+      if (supported) {
+        Linking.openURL(href);
+      } else {
+        console.log('Don\'t know how to open URI: ' + href);
+      }
+    });
+  }
+
   render () {
-    let href = 'https://jira.nitro-digital.com/browse/' + this.props.link;
     return (
       <Container>
         <Content>
@@ -13,9 +25,7 @@ export default class Task extends Component {
             <CardItem header>
               <Text>{this.props.title}</Text>
               <Text>{this.props.minutes} minutes worked</Text>
-              <Button>
-                Go to Jira
-              </Button>
+              <Text onPress={this.handleClick}>Go to jira</Text>
             </CardItem>
             <CardItem>
             </CardItem>
