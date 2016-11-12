@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Linking } from 'react-native';
 
-import { Card, CardItem, Text, Container, Content, Button } from 'native-base';
+import { Card, CardItem, Text, Container, Content, Button, InputGroup, Input } from 'native-base';
 
 export default class Task extends Component {
 
@@ -18,6 +18,7 @@ export default class Task extends Component {
   }
 
   render () {
+    console.log(this.props);
     return (
       <Container>
         <Content>
@@ -25,9 +26,13 @@ export default class Task extends Component {
             <CardItem header>
               <Text>{this.props.title}</Text>
               <Text>{this.props.minutes} minutes worked</Text>
-              <Text onPress={this.handleClick}>Go to jira</Text>
+              <Button onPress={this.handleClick}>Go to jira</Button>
             </CardItem>
             <CardItem>
+              <InputGroup borderType='rounded' >
+                  <Input keyboardType='numeric' placeholder='Number of minutes to log'/>
+              </InputGroup>
+              <Button onPress={this.handleClick}>Log time</Button>
             </CardItem>
           </Card>
         </Content>

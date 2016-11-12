@@ -43,10 +43,10 @@ export default class ContentContainer extends Component {
       return <Task
         title={elem.fields.summary}
         avatar={elem.fields.reporter.avatarUrls['32x32']}
+        userLink = {elem.fields.assignee.self}
         arrWithTimes={this.state.arrWithTimes}
         minutes={minutes}
         link={elem.key}
-        id={elem.key}
         reporter={elem.fields.reporter.displayName}
         reporterEmail={elem.fields.reporter.emailAddress}
         project={elem.fields.project.name}
