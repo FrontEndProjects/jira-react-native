@@ -26,7 +26,8 @@ export default class Task extends Component {
   }
 
   handlePostClick = () => {
-    console.log(this.props.username, this.props.password, this.props.userLink, this.props.link, this.state.timeToLog, this);
+    this.props.reloadAfterPost();
+    console.log(this.props.reloadAfterPost, 'in child');
     postHours(this.props.username, this.props.password, this.props.userLink, this.props.link, this.state.timeToLog, this);
   }
 
@@ -34,11 +35,9 @@ export default class Task extends Component {
     this.setState({
       timeToLog: num
     });
-    console.log(this.state);
   }
 
   render () {
-    console.log(this.props);
     return (
       <Container>
         <Content>

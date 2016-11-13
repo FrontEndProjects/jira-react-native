@@ -8,7 +8,6 @@ function getDateAndFormat() {
 
 export default function (username, password, authorLink, issueKey, minutes, obj) {
   const dateString = getDateAndFormat();
-  console.log(dateString);
   const secToMinutes = ( minutes * 60 ).toString();
   return axios({
     url: 'https://jira.nitro-digital.com/rest/tempo-timesheets/3/worklogs/',

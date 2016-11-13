@@ -10,11 +10,16 @@ export default class ContentContainer extends Component {
   constructor (props) {
     super(props);
     this.state = {
+      reload: false,
       arrWithTimes: []
     };
   }
 
   componentDidMount () {
+    getHours(this.props.username, this.props.password, this);
+  }
+
+  componentWillUpdate () {
     getHours(this.props.username, this.props.password, this);
   }
 
@@ -34,6 +39,13 @@ export default class ContentContainer extends Component {
     return that.state.arrWithTimes.reduce( ((a, b) => a + b[1]), 0)/60;
   }
 
+  reloadAfterPost = () => {
+    this.setState({
+      reload: !this.state.reload  
+    });
+    console.log(this.state);
+  }
+
   render () {
     let issues = this.props.issues;
     let that = this;
@@ -41,6 +53,7 @@ export default class ContentContainer extends Component {
     let Cards = issues.map((elem, idx) => {
       let minutes = that.getTimeForIssue(elem.id);
       return <Task
+        reloadAfterPost={that.reloadAfterPost.bind(that)}
         title={elem.fields.summary}
         username={this.props.username}
         password={this.props.password}
