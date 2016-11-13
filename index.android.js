@@ -8,13 +8,6 @@ import {Container, Content} from 'native-base';
 
 export default class JiraApp extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      timing: false
-    };
-  }
-
   render() {
     return (
       <Container>

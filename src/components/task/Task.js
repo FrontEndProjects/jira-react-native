@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Linking } from 'react-native';
 import { Card, CardItem, Text, Container, Content, Button, InputGroup, Input } from 'native-base';
-import postHours from '../../axios/postHours'; 
+import postHours from '../../axios/postHours';
 
 export default class Task extends Component {
 

@@ -2,33 +2,24 @@ import React, {Component} from 'react';
 import DatePicker from 'react-native-datepicker';
 import {AsyncStorage, View} from 'react-native';
 import Storage from 'react-native-storage';
-import Notification from '../notifications/Notification';
+import Notification from '../../notifications/Notification';
 
 import moment from 'moment';
 
 export default class Picker extends Component {
 
   componentDidUpdate() {
-    storage.load({
-      key: 'notification'
-    }).then(data => {
-      console.log(data);
-      this.state = {
-        time: data.humanTime,
-        timeChanged: false
-      };
-    }).catch(error => {
-      console.log('Error: ', error);
-      this.state = {
-        time: '17:00'
-      };
-    });
+    this.loadData();
   }
 
-  componentWillMount () {
+  componentWillMount() {
     this.state = {
       loading: true
     };
+    this.loadData();
+  }
+
+  loadData() {
     storage.load({
       key: 'notification'
     }).then(data => {
@@ -62,8 +53,8 @@ export default class Picker extends Component {
             mode="time"
             format="HH:mm"
             minuteInterval={10}
-            onPressDate
             onDateChange={(time) => {
+              console.log(time);
               this.setState({
                 time,
                 timeChanged: true
