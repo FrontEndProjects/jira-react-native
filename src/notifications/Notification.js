@@ -17,6 +17,7 @@ export default class Notification extends Component {
           body: 'test',
           title: 'test',
           color: 'red',
+          // repeat_interval: 'minute',
           show_in_foreground: true
         });
 
@@ -27,6 +28,8 @@ export default class Notification extends Component {
         });
       }
     }).catch(err => {
+      // any exception including data not found
+      // goes to catch()
       console.warn(err.message);
       switch (err.name) {
         case 'NotFoundError':
@@ -35,6 +38,10 @@ export default class Notification extends Component {
           break;
       }
     });
+
+    if (this.props.cancel) {
+      FCM.cancelLocalNotification('user_notification1');
+    }
 
     FCM.requestPermissions(); // for iOS
     FCM.getFCMToken().then(token => {
