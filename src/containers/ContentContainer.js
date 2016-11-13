@@ -42,11 +42,13 @@ export default class ContentContainer extends Component {
       let minutes = that.getTimeForIssue(elem.id);
       return <Task
         title={elem.fields.summary}
+        username={this.props.username}
+        password={this.props.password}
         avatar={elem.fields.reporter.avatarUrls['32x32']}
+        userLink = {elem.fields.assignee.self}
         arrWithTimes={this.state.arrWithTimes}
         minutes={minutes}
         link={elem.key}
-        id={elem.key}
         reporter={elem.fields.reporter.displayName}
         reporterEmail={elem.fields.reporter.emailAddress}
         project={elem.fields.project.name}
