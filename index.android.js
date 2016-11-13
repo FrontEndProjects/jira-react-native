@@ -4,16 +4,21 @@ import {
 } from 'react-native';
 
 import MainContainer from './src/containers/MainContainer';
-import Notification from './src/notifications/Notification';
-
 import {Container, Content} from 'native-base';
 
 export default class JiraApp extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      timing: false
+    };
+  }
+
   render() {
     return (
       <Container>
         <Content>
-          <Notification />
           <MainContainer />
         </Content>
       </Container>

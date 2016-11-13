@@ -3778,6 +3778,10 @@ module-deps@^3.9.1:
     through2 "^1.0.0"
     xtend "^4.0.0"
 
+moment:
+  version "2.16.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.16.0.tgz#f38f2c97c9889b0ee18fc6cc392e1e443ad2da8e"
+
 moment@2.x.x:
   version "2.15.2"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.15.2.tgz#1bfdedf6a6e345f322fe956d5df5bd08a8ce84dc"
@@ -4254,6 +4258,12 @@ react-native-checkbox@~1.0.8:
   version "1.0.15"
   resolved "https://registry.yarnpkg.com/react-native-checkbox/-/react-native-checkbox-1.0.15.tgz#a4d7563a14ef4972faeb74afdd3e031d51ee5423"
 
+react-native-datepicker:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/react-native-datepicker/-/react-native-datepicker-1.4.2.tgz#2383f8d63242419f660600000ae91da30e871555"
+  dependencies:
+    moment "2.x.x"
+
 react-native-easy-grid@0.1.5:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/react-native-easy-grid/-/react-native-easy-grid-0.1.5.tgz#357e26c891ba5818d83652eae79c9f7d669ff8d2"
@@ -4273,6 +4283,10 @@ react-native-keyboard-aware-scroll-view@0.2.0:
 react-native-loading-spinner-overlay@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/react-native-loading-spinner-overlay/-/react-native-loading-spinner-overlay-0.3.0.tgz#3659c7c35523087e8db8f04c9e526d519f907b2b"
+
+react-native-storage:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/react-native-storage/-/react-native-storage-0.1.4.tgz#d1b9bcd7f8589c21f4b1ab470b2596f408d8cd36"
 
 react-native-vector-icons@2.0.x:
   version "2.0.3"

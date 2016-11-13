@@ -3,7 +3,7 @@ import Task from '../components/task/Task';
 import TopBar from '../components/topbar/TopBar';
 
 import getHours from '../axios/getHours';
-import { Container, Content, Text } from 'native-base';
+import { Container, Content } from 'native-base';
 
 export default class ContentContainer extends Component {
 
@@ -37,7 +37,7 @@ export default class ContentContainer extends Component {
   render () {
     let issues = this.props.issues;
     let that = this;
-    let allTimeLogged = that.getAllLoggedTime(); 
+    let allTimeLogged = that.getAllLoggedTime();
     let Cards = issues.map((elem, idx) => {
       let minutes = that.getTimeForIssue(elem.id);
       return <Task
