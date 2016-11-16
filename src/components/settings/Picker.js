@@ -41,6 +41,15 @@ export default class Picker extends Component {
     return moment(time, 'HH:mm').format('x');
   }
 
+  compareTimes(currentTime, setTime) {
+    let currentStateTimestamp = this.convertToTimestamp(setTime); // 19:40
+    if (currentTime > currentStateTimestamp) {
+      return moment(currentStateTimestamp, 'x').add(1, 'days').format('x');
+    } else {
+      return currentStateTimestamp;
+    }
+  }
+
   render() {
     if (this.state.loading) {
       return null;
@@ -54,15 +63,15 @@ export default class Picker extends Component {
             format="HH:mm"
             minuteInterval={10}
             onDateChange={(time) => {
-              console.log(time);
               this.setState({
                 time,
                 timeChanged: true
               });
+              let timestamp = this.compareTimes(new Date().getTime(), this.state.time);
               storage.save({
                 key: 'notification',
                 rawData: {
-                  timestamp: this.convertToTimestamp(this.state.time),
+                  timestamp,
                   humanTime: this.state.time
                 }
               });
