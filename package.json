@@ -12,7 +12,7 @@
     "moment": "^2.16.0",
     "native-base": "^0.5.8",
     "react": "15.3.2",
-    "react-native": "0.36.0",
+    "react-native": "0.39.2",
     "react-native-datepicker": "^1.4.2",
     "react-native-fcm": "^2.3.2",
     "react-native-loading-spinner-overlay": "^0.3.0",

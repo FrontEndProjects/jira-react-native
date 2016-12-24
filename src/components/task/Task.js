@@ -44,14 +44,16 @@ export default class Task extends Component {
           <Card>
             <CardItem header>
               <Text>{this.props.title}</Text>
-              <Text>{this.props.minutes} minutes worked</Text>
-              <Button onPress={this.handleLinkClick}>Go to jira</Button>
             </CardItem>
             <CardItem>
+              <Text>{this.props.minutes} minutes worked today</Text>
+              <Button bordered small onPress={this.handleLinkClick}>Go to jira</Button>
               <InputGroup borderType='rounded' >
                   <Input keyboardType='numeric' placeholder='Number of minutes to log' value={this.state.timeToLog} onChangeText={this.handleInput} />
               </InputGroup>
-              <Button onPress={this.handlePostClick}>Log time</Button>
+              <Button block onPress={this.handlePostClick}>Log time</Button>
+            </CardItem>
+            <CardItem>
             </CardItem>
           </Card>
         </Content>
