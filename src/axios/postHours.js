@@ -33,6 +33,7 @@ export default function (username, password, authorLink, issueKey, minutes, obj)
     .then(response => {
       obj.setState({
         timeToLog: "0",
+        logging: false,
         postSuccess: true
       });
     })
