@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Task from '../components/task/Task';
+import TaskContainer from './TaskContainer';
 import TopBar from '../components/topbar/TopBar';
 
 import getHours from '../axios/getHours';
@@ -52,7 +52,7 @@ export default class ContentContainer extends Component {
     let allTimeLogged = that.getAllLoggedTime();
     let Cards = issues.map((elem, idx) => {
       let minutes = that.getTimeForIssue(elem.id);
-      return <Task
+      return <TaskContainer
         reloadAfterPost={that.reloadAfterPost.bind(that)}
         title={elem.fields.summary}
         username={this.props.username}
