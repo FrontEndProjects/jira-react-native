@@ -3,6 +3,7 @@ import { ActivityIndicator, Linking, StyleSheet, View } from 'react-native';
 import { Card, CardItem, Text, Container, Content, Button, InputGroup, Input } from 'native-base';
 import postHours from '../axios/postHours';
 import LogTime from '../components/task/LogTime';
+import TaskInfo from '../components/task/TaskInfo';
 
 export default class TaskContainer extends Component {
 
@@ -49,10 +50,7 @@ export default class TaskContainer extends Component {
               <Text>{this.props.title}</Text>
             </CardItem>
             <CardItem>
-              <View style={{ flex: 1, flexDirection: 'row'}}>
-                <Text>{this.props.minutes} minutes worked today</Text>
-                <Button bordered small onPress={this.handleLinkClick}>Go to jira</Button>
-              </View>
+              <TaskInfo handleLinkClick={this.handlLinkClick} minutes={this.props.minutes} />
               <LogTime logging={this.state.logging} handlePostClick={this.handlePostClick} timeToLog={this.state.timeToLog} handleInput={this.handleInput} />
             </CardItem>
           </Card>
@@ -62,9 +60,3 @@ export default class TaskContainer extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  half: {
-    width: 50 
-  }
-
-});
