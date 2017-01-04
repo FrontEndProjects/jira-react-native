@@ -28,11 +28,13 @@ export default class TaskContainer extends Component {
   }
 
   handlePostClick = () => {
-    this.setState({
-      logging: true 
-    })
-    this.props.reloadAfterPost();
-    postHours(this.props.username, this.props.password, this.props.userLink, this.props.link, this.state.timeToLog, this);
+    if (this.state.timeToLog > 0) {
+      this.setState({
+        logging: true 
+      })
+      this.props.reloadAfterPost();
+      postHours(this.props.username, this.props.password, this.props.userLink, this.props.link, this.state.timeToLog, this);
+    }
   }
 
   handleInput = (num) => {

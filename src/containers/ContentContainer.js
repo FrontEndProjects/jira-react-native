@@ -43,7 +43,6 @@ export default class ContentContainer extends Component {
     this.setState({
       reload: !this.state.reload  
     });
-    console.log(this.state);
   }
 
   render () {
