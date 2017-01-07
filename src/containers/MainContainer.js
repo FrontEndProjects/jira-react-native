@@ -8,7 +8,7 @@ import SettingsContainer from './SettingsContainer';
 import { Container, Content, Tabs } from 'native-base';
 
 import Spinner from 'react-native-loading-spinner-overlay';
-import { View } from 'react-native';
+import { View, AsyncStorage } from 'react-native';
 
 import myTheme from '../../Themes/myTheme';
 
@@ -33,10 +33,32 @@ export default class MainContainer extends Component {
     this.handleLoginButton = this.handleLoginButton.bind(this);
   }
 
-  handleLoginInput (e) {
+  componentDidMount () {
+        this.loadInitialState().done();
+  }
+
+  loadInitialState = async () => {
+    try {
+      var jiraLink = await AsyncStorage.getItem("jiraLink");
+      var login = await AsyncStorage.getItem("login");
+      if (jiraLink !== null || login !== null){
+        this.setState({"jiraLink": jiraLink});
+        this.setState({"login": login});
+      } else {
+      }
+    } catch (error) {
+    }
+  }
+
+  handleLoginInput =  async (e) => {
     this.setState({
       login: e
     });
+    try {
+        await AsyncStorage.setItem("login", e);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   handlePasswordInput (e) {
@@ -45,10 +67,15 @@ export default class MainContainer extends Component {
     });
   }
 
-  handleJiraLinkInput (e) {
+  handleJiraLinkInput =  async (e) => {
     this.setState({
       jiraLink: e
     });
+    try {
+        await AsyncStorage.setItem("jiraLink", e);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   handleLoginButton () {
@@ -76,6 +103,8 @@ export default class MainContainer extends Component {
               handleLoginInput={this.handleLoginInput}
               handlePasswordInput={this.handlePasswordInput}
               handleJiraLinkInput={this.handleJiraLinkInput}
+              jiraLink={this.state.jiraLink}
+              login={this.state.login}
               errorInfo={this.state.errorText}
             />
           </Content>

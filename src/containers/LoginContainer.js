@@ -19,6 +19,8 @@ export default class LoginContainer extends Component {
             handleLoginInput={this.props.handleLoginInput}
             handlePasswordInput={this.props.handlePasswordInput}
             handleJiraLinkInput={this.props.handleJiraLinkInput}
+            jiraLink={this.props.jiraLink}
+            login={this.props.login}
             error={this.props.errorInfo}
           />
         </Content>
