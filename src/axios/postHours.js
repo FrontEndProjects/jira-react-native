@@ -6,11 +6,11 @@ function getDateAndFormat() {
   return arrDate[3] + '-' + (dateObj.getMonth() + 1) + '-' + arrDate[2] + 'T' + arrDate[4] + '.000';
 }
 
-export default function (username, password, authorLink, issueKey, minutes, obj) {
+export default function (username, password, jiraLink, authorLink, issueKey, minutes, obj) {
   const dateString = getDateAndFormat();
   const secToMinutes = ( minutes * 60 ).toString();
   return axios({
-    url: 'https://jira.nitro-digital.com/rest/tempo-timesheets/3/worklogs/',
+    url: `${jiraLink}/rest/tempo-timesheets/3/worklogs/`,
     method: 'POST',
     data: {
       "issue": {

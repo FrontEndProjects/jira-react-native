@@ -12,9 +12,9 @@ function createArrayWithTaskAndHours (data) {
   return arr;
 }
 
-export default function (username, password, obj) {
+export default function (username, password, jiraLink, obj) {
   return axios({
-    url: 'https://jira.nitro-digital.com/rest/tempo-timesheets/3/worklogs/',
+    url: `${jiraLink}/rest/tempo-timesheets/3/worklogs/`,
     auth: {
       username,
       password

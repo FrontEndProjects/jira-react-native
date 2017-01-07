@@ -21,6 +21,7 @@ export default class MainContainer extends Component {
       data: [],
       login: '',
       password: '',
+      jiraLink: '',
       errorText: '',
       progress: false,
       visible: false
@@ -28,6 +29,7 @@ export default class MainContainer extends Component {
 
     this.handleLoginInput = this.handleLoginInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
+    this.handleJiraLinkInput = this.handleJiraLinkInput.bind(this);
     this.handleLoginButton = this.handleLoginButton.bind(this);
   }
 
@@ -43,13 +45,19 @@ export default class MainContainer extends Component {
     });
   }
 
+  handleJiraLinkInput (e) {
+    this.setState({
+      jiraLink: e
+    });
+  }
+
   handleLoginButton () {
     this.setState({
       progress: true,
       visible: true
     });
 
-    getIssues(this.state.login, this.state.password, this);
+    getIssues(this.state.login, this.state.password, this.state.jiraLink, this);
   }
 
   render () {
@@ -67,6 +75,7 @@ export default class MainContainer extends Component {
               handleLoginButton={this.handleLoginButton}
               handleLoginInput={this.handleLoginInput}
               handlePasswordInput={this.handlePasswordInput}
+              handleJiraLinkInput={this.handleJiraLinkInput}
               errorInfo={this.state.errorText}
             />
           </Content>
@@ -82,6 +91,7 @@ export default class MainContainer extends Component {
                 issues={this.state.data}
                 username={this.state.login}
                 password={this.state.password}
+                jiraLink={this.state.jiraLink}
               />
               <SettingsContainer
                 tabLabel='Settings'

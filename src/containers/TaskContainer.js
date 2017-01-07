@@ -16,7 +16,7 @@ export default class TaskContainer extends Component {
   }
 
   handleLinkClick = () => {
-    const href = 'https://jira.nitro-digital.com/browse/' + this.props.link;
+    const href = this.props.jiraLink + '/browse/' + this.props.link;
 
     Linking.canOpenURL(href).then(supported => {
       if (supported) {
@@ -33,7 +33,7 @@ export default class TaskContainer extends Component {
         logging: true 
       })
       this.props.reloadAfterPost();
-      postHours(this.props.username, this.props.password, this.props.userLink, this.props.link, this.state.timeToLog, this);
+      postHours(this.props.username, this.props.password, this.props.jiraLink, this.props.userLink, this.props.link, this.state.timeToLog, this);
     }
   }
 

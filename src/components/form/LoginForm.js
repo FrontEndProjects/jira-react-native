@@ -20,8 +20,8 @@ function LoginForm(props) {
       </InputGroup>
       <InputGroup>
         <Input
-          placeholder="Enter your link"
-          onChangeText={props.handleLoginInput}
+          placeholder="Enter url to your jira"
+          onChangeText={props.handleJiraLinkInput}
         />
       </InputGroup>
       <Button block primary onPress={props.handleLoginButton}>Login</Button>

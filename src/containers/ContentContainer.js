@@ -16,11 +16,11 @@ export default class ContentContainer extends Component {
   }
 
   componentDidMount () {
-    getHours(this.props.username, this.props.password, this);
+    getHours(this.props.username, this.props.password, this.props.jiraLink, this);
   }
 
   componentWillUpdate () {
-    getHours(this.props.username, this.props.password, this);
+    getHours(this.props.username, this.props.password, this.props.jiraLink, this);
   }
 
   getTimeForIssue (issueId) {
@@ -56,6 +56,7 @@ export default class ContentContainer extends Component {
         title={elem.fields.summary}
         username={this.props.username}
         password={this.props.password}
+        jiraLink={this.props.jiraLink}
         avatar={elem.fields.reporter.avatarUrls['32x32']}
         userLink = {elem.fields.assignee.self}
         arrWithTimes={this.state.arrWithTimes}

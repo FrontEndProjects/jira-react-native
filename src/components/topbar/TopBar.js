@@ -1,7 +1,24 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
+function TopBar(props) {
+  let timeInPercent = props.allTimeLogged / 360;
+  return (
+    <View >
+      <Text style={styles.text}>Today you have logged: {props.allTimeLogged} minutes</Text>
+      <View style={{flex: 1, flexDirection: 'row'}}>
+        <View style={[ styles.bar, {flex: timeInPercent} ]} />
+        <View style={[ styles.rest, {flex: 1 - timeInPercent} ]} />
+      </View>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
+  text: {
+    paddingLeft: 10,
+    paddingTop: 5
+  },
   bar: {
     backgroundColor: 'steelblue',
     padding: 2,
@@ -17,19 +34,5 @@ const styles = StyleSheet.create({
     marginBottom: 8
   }
 });
-
-function TopBar(props) {
-  let timeInPercent = props.allTimeLogged / 360;
-  return (
-    <View >
-      <Text>You already have worked for: {props.allTimeLogged} minutes</Text>
-      <View style={{flex: 1, flexDirection: 'row'}}>
-        <View style={[ styles.bar, {flex: timeInPercent} ]} />
-        <View style={[ styles.rest, {flex: 1 - timeInPercent} ]} />
-      </View>
-    </View>
-  );
-}
-
 export default TopBar
 
