@@ -7,7 +7,7 @@ function LoginForm(props) {
     <Content>
       <InputGroup>
         <Input
-          placeholder={props.login ? props.login : "Enter url to your jira" }
+          placeholder={props.login ? props.login : "Enter your jira login" }
           onChangeText={props.handleLoginInput}
         />
       </InputGroup>
