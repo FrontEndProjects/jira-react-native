@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import FCM from 'react-native-fcm';
+import FCM, { FCMEvent } from 'react-native-fcm';
 
 import { AsyncStorage } from 'react-native';
 import Storage from 'react-native-storage';
@@ -47,7 +47,7 @@ export default class Notification extends Component {
     FCM.getFCMToken().then(token => {
       console.log('Token ', token);
     });
-    this.notificationUnsubscribe = FCM.on('notification', (notif) => {
+    this.notificationUnsubscribe = FCM.on(FCMEvent.Notification, (notif) => {
       if (notif.local_notification) {
         console.log('local notification');
       }
@@ -55,7 +55,7 @@ export default class Notification extends Component {
         console.log('opened from tray');
       }
     });
-    this.refreshUnsubscribe = FCM.on('refreshToken', (token) => {
+    this.refreshUnsubscribe = FCM.on(FCMEvent.RefreshToken, (token) => {
       console.log(token);
     });
   }

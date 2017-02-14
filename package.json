@@ -11,12 +11,13 @@
     "dateformat": "^1.0.12",
     "moment": "^2.16.0",
     "native-base": "^0.5.8",
-    "react": "15.3.2",
-    "react-native": "0.39.2",
+    "react": "~15.4.0",
+    "react-native": "0.41.2",
     "react-native-datepicker": "^1.4.2",
-    "react-native-fcm": "^2.3.2",
-    "react-native-loading-spinner-overlay": "^0.3.0",
-    "react-native-storage": "^0.1.4"
+    "react-native-fcm": "^6.0.3",
+    "react-native-loading-spinner-overlay": "^0.4.1",
+    "react-native-storage": "^0.1.4",
+    "react-native-vector-icons": "^4.0.0"
   },
   "jest": {
     "preset": "jest-react-native"
