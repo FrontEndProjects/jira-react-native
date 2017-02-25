@@ -30,7 +30,7 @@ export default function (username, password, jiraLink, authorLink, issueKey, min
       password
     }
   })
-    .then(response => {
+    .then(() => {
       obj.setState({
         timeToLog: '0',
         logging: false,

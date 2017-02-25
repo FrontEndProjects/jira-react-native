@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {View, ActivityIndicator, StyleSheet} from 'react-native';
 
 import {InputGroup, Button, Input} from 'native-base';

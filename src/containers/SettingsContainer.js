@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Container, Content, Text } from 'native-base';
 
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Picker from '../components/settings/Picker';
 import EnableNotification from '../components/settings/EnableNotification';
-import RememberPassword from '../components/settings/rememberPassword';
+import RememberPassword from '../components/settings/RememberPassword';
 
 import getStorage from '../storage/getStorage';
 
@@ -38,12 +38,11 @@ export default class SettingsContainer extends Component {
     });
   }
 
-  handleClick = () =>  {
-    console.log('1',this.state.showPicker)
-      this.setState({
-        showPicker: !this.state.showPicker
-      });
-
+  handleClick = () => {
+    console.log('1', this.state.showPicker);
+    this.setState({
+      showPicker: !this.state.showPicker
+    });
   };
 
   render() {

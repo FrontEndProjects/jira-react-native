@@ -34,28 +34,28 @@ export default class MainContainer extends Component {
   }
 
   componentDidMount () {
-        this.loadInitialState().done();
+    this.loadInitialState().done();
   }
 
   loadInitialState = async () => {
     try {
-      var jiraLink = await AsyncStorage.getItem("jiraLink");
-      var login = await AsyncStorage.getItem("login");
-      if (jiraLink !== null || login !== null){
-        this.setState({"jiraLink": jiraLink});
-        this.setState({"login": login});
-      } else {
+      let jiraLink = await AsyncStorage.getItem('jiraLink');
+      let login = await AsyncStorage.getItem('login');
+      if (jiraLink !== null || login !== null) {
+        this.setState({jiraLink});
+        this.setState({login});
       }
     } catch (error) {
+      console.log(error);
     }
   }
 
-  handleLoginInput =  async (e) => {
+  handleLoginInput = async (e) => {
     this.setState({
       login: e
     });
     try {
-        await AsyncStorage.setItem("login", e);
+      await AsyncStorage.setItem('login', e);
     } catch (error) {
       console.log(error);
     }
@@ -67,12 +67,12 @@ export default class MainContainer extends Component {
     });
   }
 
-  handleJiraLinkInput =  async (e) => {
+  handleJiraLinkInput = async (e) => {
     this.setState({
       jiraLink: e
     });
     try {
-        await AsyncStorage.setItem("jiraLink", e);
+      await AsyncStorage.setItem('jiraLink', e);
     } catch (error) {
       console.log(error);
     }

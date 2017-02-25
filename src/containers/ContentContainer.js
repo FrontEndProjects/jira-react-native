@@ -26,17 +26,17 @@ export default class ContentContainer extends Component {
   getTimeForIssue (issueId) {
     let timeWorked = 0;
     const that = this;
-    for (item of that.state.arrWithTimes) {
-      if (item[0] == issueId) {
+    for (let item of that.state.arrWithTimes) {
+      if (item[0] === issueId) {
         timeWorked += item[1];
       }
     }
-    return timeWorked/60;
+    return timeWorked / 60;
   }
 
   getAllLoggedTime () {
     const that = this;
-    return that.state.arrWithTimes.reduce( ((a, b) => a + b[1]), 0)/60;
+    return that.state.arrWithTimes.reduce((a, b) => a + b[1], 0) / 60;
   }
 
   reloadAfterPost = () => {
@@ -67,7 +67,7 @@ export default class ContentContainer extends Component {
         project={elem.fields.project.name}
         key={idx}
       />;
-      });
+    });
 
     return (
       <Container>

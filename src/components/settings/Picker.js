@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import DatePicker from 'react-native-datepicker';
-import {AsyncStorage, View} from 'react-native';
+import {View} from 'react-native';
 import Notification from '../../notifications/Notification';
 
 import moment from 'moment';
@@ -8,10 +8,6 @@ import moment from 'moment';
 import getStorage from '../../storage/getStorage';
 
 export default class Picker extends Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   componentDidUpdate() {
     this.loadData();

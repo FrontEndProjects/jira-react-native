@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { ActivityIndicator, Linking, StyleSheet, View } from 'react-native';
-import { Card, CardItem, Text, Container, Content, Button, InputGroup, Input } from 'native-base';
+import { Linking } from 'react-native';
+import { Card, CardItem, Text, Container, Content } from 'native-base';
 import postHours from '../axios/postHours';
 import LogTime from '../components/task/LogTime';
 import TaskInfo from '../components/task/TaskInfo';
@@ -11,7 +11,7 @@ export default class TaskContainer extends Component {
     super(props);
     this.state = {
       logging: false,
-      timeToLog: "0"
+      timeToLog: '0'
     };
   }
 
@@ -30,8 +30,8 @@ export default class TaskContainer extends Component {
   handlePostClick = () => {
     if (this.state.timeToLog > 0) {
       this.setState({
-        logging: true 
-      })
+        logging: true
+      });
       this.props.reloadAfterPost();
       postHours(this.props.username, this.props.password, this.props.jiraLink, this.props.userLink, this.props.link, this.state.timeToLog, this);
     }

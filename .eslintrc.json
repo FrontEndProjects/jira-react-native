@@ -1,15 +1,15 @@
 {
   "extends": "eslint:recommended",
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 6,
+    "sourceType": "module",
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
       "jsx": true
-    },
-    "sourceType": "module"
+    }
   },
-
-   "settings": {
+  "settings": {
     "react": {
       "createClass": "createClass",
       "pragma": "React",
@@ -35,7 +35,6 @@
     "$": true,
     "window": true
   },
-
   "rules": {
     "accessor-pairs": 2,
     "arrow-spacing": [2, { "before": true, "after": true }],
@@ -98,6 +97,7 @@
     "no-useless-constructor": 2,
     "no-useless-escape": 2,
     "no-useless-rename": 2,
+    "no-var": 2,
     "no-whitespace-before-property": 2,
     "no-with": 2,
     "object-property-newline": [2, { "allowMultiplePropertiesPerLine": true }],

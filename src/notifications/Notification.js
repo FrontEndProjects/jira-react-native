@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import FCM, { FCMEvent } from 'react-native-fcm';
 
 import getStorage from '../storage/getStorage';

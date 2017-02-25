@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { AsyncStorage, Switch, View } from 'react-native';
+import { Switch, View } from 'react-native';
 
 export default class RememberPassword extends Component {
 

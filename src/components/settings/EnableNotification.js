@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-import { View } from 'react-native';
-
-import { CheckBox } from 'native-base';
+import { View, Switch } from 'react-native';
 
 import Notification from '../../notifications/Notification';
 
@@ -13,7 +11,7 @@ export default class EnableNotification extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      checkbox: false
+      switchOn: false
     };
   }
 
@@ -27,12 +25,12 @@ export default class EnableNotification extends Component {
     }).then(data => {
       console.log(data);
       this.state = {
-        checkbox: data.enable
+        switchOn: data.enable
       };
     }).catch(error => {
       console.log('Error: ', error);
       this.state = {
-        checkbox: false
+        switchOn: false
       };
     });
   }
@@ -40,22 +38,35 @@ export default class EnableNotification extends Component {
   render() {
     return (
       <View>
-        <CheckBox
-          checked={this.state.checkbox}
-          onPress={() => {
-            this.setState({checkbox: !this.state.checkbox});
+        <Switch
+          onValueChange={(value) => {
+            this.setState({switchOn: value});
             this.props.myFunc();
             getStorage().save({
               key: 'notificationEnable',
               rawData: {
-                enable: !this.state.checkbox
+                enable: !this.state.switchOn
               }
             });
           }}
+          value={this.state.switchOn}
         />
+        {/*<CheckBox*/}
+          {/*checked={this.state.switchOn}*/}
+          {/*onPress={() => {*/}
+            {/*this.setState({switchOn: !this.state.switchOn});*/}
+            {/*this.props.myFunc();*/}
+            {/*getStorage().save({*/}
+              {/*key: 'notificationEnable',*/}
+              {/*rawData: {*/}
+                {/*enable: !this.state.switchOn*/}
+              {/*}*/}
+            {/*});*/}
+          {/*}}*/}
+        {/*/>*/}
         <Notification
-          timing={this.state.checkbox}
-          cancel={!this.state.checkbox}
+          timing={this.state.switchOn}
+          cancel={!this.state.switchOn}
         />
         </View>
     );

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 import {Button} from 'native-base';
@@ -7,7 +7,7 @@ function TaskInfo(props) {
   return (
       <View style={styles.container} >
         <Text style={styles.text}>{props.minutes} minutes worked today</Text>
-        <Button style={styles.button} bordered small onPress={props.handleLinkClick}>Go to jira</Button>
+        <Button title="Go to Jira" style={styles.button} bordered small onPress={props.handleLinkClick} />
       </View>
   );
 }
