@@ -3,14 +3,12 @@ import {View, Text, StyleSheet} from 'react-native';
 
 import {Button} from 'native-base';
 
-function TaskInfo(props) {
-  return (
-      <View style={styles.container} >
-        <Text style={styles.text}>{props.minutes} minutes worked today</Text>
-        <Button style={styles.button} bordered small onPress={props.handleLinkClick}>Go to Jira</Button>
-      </View>
-  );
-}
+const TaskInfo = (props) => (
+  <View style={styles.container}>
+    <Text style={styles.text}>{props.minutes} minutes worked today</Text>
+    <Button style={styles.button} bordered small onPress={props.handleLinkClick}>Go to Jira</Button>
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {

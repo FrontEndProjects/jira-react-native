@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
-import { View, Switch } from 'react-native';
+import {View, Switch} from 'react-native';
 
 import Notification from '../../notifications/Notification';
 
@@ -8,7 +8,7 @@ import getStorage from '../../storage/getStorage';
 
 export default class EnableNotification extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       switchOn: false
@@ -55,7 +55,7 @@ export default class EnableNotification extends Component {
           timing={this.state.switchOn}
           cancel={!this.state.switchOn}
         />
-        </View>
+      </View>
     );
   }
 }

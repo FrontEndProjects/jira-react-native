@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-function getDateAndFormat() {
+const getDateAndFormat = () => {
   const dateObj = new Date();
   const arrDate = (dateObj.toString()).split(' ');
   return arrDate[3] + '-' + (dateObj.getMonth() + 1) + '-' + arrDate[2] + 'T' + arrDate[4] + '.000';
-}
+};
 
-export default function (username, password, jiraLink, authorLink, issueKey, minutes, obj) {
+export default (username, password, jiraLink, authorLink, issueKey, minutes, obj) => {
   const dateString = getDateAndFormat();
   const secToMinutes = (minutes * 60).toString();
   return axios({
@@ -40,5 +40,5 @@ export default function (username, password, jiraLink, authorLink, issueKey, min
     .catch(error => {
       console.log(error);
     });
-}
+};
 

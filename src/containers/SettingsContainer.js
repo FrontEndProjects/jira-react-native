@@ -58,9 +58,6 @@ export default class SettingsContainer extends Component {
               <Picker disabled2={this.state.showPicker} />
           </View>
           <View style={styles.settingSection}>
-            <Text style={styles.text}>Interval</Text>
-          </View>
-          <View style={styles.settingSection}>
             <Text style={styles.text}>Remember my password</Text>
             <RememberPassword style={styles.checkBox} />
           </View>

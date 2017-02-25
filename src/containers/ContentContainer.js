@@ -3,11 +3,11 @@ import TaskContainer from './TaskContainer';
 import TopBar from '../components/topbar/TopBar';
 
 import getHours from '../axios/getHours';
-import { Container, Content } from 'native-base';
+import {Container, Content} from 'native-base';
 
 export default class ContentContainer extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       reload: false,
@@ -15,15 +15,15 @@ export default class ContentContainer extends Component {
     };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     getHours(this.props.username, this.props.password, this.props.jiraLink, this);
   }
 
-  componentWillUpdate () {
+  componentWillUpdate() {
     // getHours(this.props.username, this.props.password, this.props.jiraLink, this);
   }
 
-  getTimeForIssue (issueId) {
+  getTimeForIssue(issueId) {
     let timeWorked = 0;
     const that = this;
     for (let item of that.state.arrWithTimes) {
@@ -34,7 +34,7 @@ export default class ContentContainer extends Component {
     return timeWorked / 60;
   }
 
-  getAllLoggedTime () {
+  getAllLoggedTime() {
     const that = this;
     return that.state.arrWithTimes.reduce((a, b) => a + b[1], 0) / 60;
   }
@@ -45,7 +45,7 @@ export default class ContentContainer extends Component {
     });
   }
 
-  render () {
+  render() {
     let issues = this.props.issues;
     let that = this;
     let allTimeLogged = that.getAllLoggedTime();
@@ -58,7 +58,7 @@ export default class ContentContainer extends Component {
         password={this.props.password}
         jiraLink={this.props.jiraLink}
         avatar={elem.fields.reporter.avatarUrls['32x32']}
-        userLink = {elem.fields.assignee.self}
+        userLink={elem.fields.assignee.self}
         arrWithTimes={this.state.arrWithTimes}
         minutes={minutes}
         link={elem.key}
@@ -72,7 +72,7 @@ export default class ContentContainer extends Component {
     return (
       <Container>
         <Content>
-          <TopBar allTimeLogged={allTimeLogged} />
+          <TopBar allTimeLogged={allTimeLogged}/>
         </Content>
         <Content>
           {Cards}

@@ -1,31 +1,28 @@
-import React, {Component} from 'react';
+import React from 'react';
 import LoginForm from '../components/form/LoginForm';
 
-import { Container, Content, Header, Title } from 'native-base';
+import {Container, Content, Header, Title} from 'native-base';
 
 import myTheme from '../../Themes/myTheme';
 
-export default class LoginContainer extends Component {
+const LoginContainer = (props) => (
+  <Container>
+    <Content>
+      <Header theme={myTheme}>
+        <Title>Log In to Jira</Title>
+      </Header>
+      <LoginForm
+        handleLoginButton={props.handleLoginButton}
+        handleLoginInput={props.handleLoginInput}
+        handlePasswordInput={props.handlePasswordInput}
+        handleJiraLinkInput={props.handleJiraLinkInput}
+        jiraLink={props.jiraLink}
+        login={props.login}
+        error={props.errorInfo}
+      />
+    </Content>
+  </Container>
 
-  render () {
-    return (
-      <Container>
-        <Content>
-          <Header theme={myTheme}>
-            <Title>Log In to Jira</Title>
-          </Header>
-          <LoginForm
-            handleLoginButton={this.props.handleLoginButton}
-            handleLoginInput={this.props.handleLoginInput}
-            handlePasswordInput={this.props.handlePasswordInput}
-            handleJiraLinkInput={this.props.handleJiraLinkInput}
-            jiraLink={this.props.jiraLink}
-            login={this.props.login}
-            error={this.props.errorInfo}
-          />
-        </Content>
-      </Container>
+);
 
-    );
-  }
-}
+export default LoginContainer;
