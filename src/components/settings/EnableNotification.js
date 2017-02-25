@@ -51,19 +51,6 @@ export default class EnableNotification extends Component {
           }}
           value={this.state.switchOn}
         />
-        {/*<CheckBox*/}
-          {/*checked={this.state.switchOn}*/}
-          {/*onPress={() => {*/}
-            {/*this.setState({switchOn: !this.state.switchOn});*/}
-            {/*this.props.myFunc();*/}
-            {/*getStorage().save({*/}
-              {/*key: 'notificationEnable',*/}
-              {/*rawData: {*/}
-                {/*enable: !this.state.switchOn*/}
-              {/*}*/}
-            {/*});*/}
-          {/*}}*/}
-        {/*/>*/}
         <Notification
           timing={this.state.switchOn}
           cancel={!this.state.switchOn}

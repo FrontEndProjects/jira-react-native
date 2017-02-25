@@ -7,7 +7,7 @@ function TaskInfo(props) {
   return (
       <View style={styles.container} >
         <Text style={styles.text}>{props.minutes} minutes worked today</Text>
-        <Button title="Go to Jira" style={styles.button} bordered small onPress={props.handleLinkClick} />
+        <Button style={styles.button} bordered small onPress={props.handleLinkClick}>Go to Jira</Button>
       </View>
   );
 }
