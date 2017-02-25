@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import FCM, { FCMEvent } from 'react-native-fcm';
 
-import { AsyncStorage } from 'react-native';
-import Storage from 'react-native-storage';
+import getStorage from '../storage/getStorage';
 
 export default class Notification extends Component {
 
   componentDidUpdate() {
-    storage.load({
+    getStorage().load({
       key: 'notification'
     }).then(data => {
       if (this.props.timing) {
@@ -69,9 +68,3 @@ export default class Notification extends Component {
     return null;
   }
 }
-
-const storage = new Storage({
-  storageBackend: AsyncStorage,
-  defaultExpires: null,
-  enableCache: false
-});

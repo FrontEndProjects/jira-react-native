@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
 import DatePicker from 'react-native-datepicker';
 import {AsyncStorage, View} from 'react-native';
-import Storage from 'react-native-storage';
 import Notification from '../../notifications/Notification';
 
 import moment from 'moment';
 
+import getStorage from '../../storage/getStorage';
+
 export default class Picker extends Component {
+
+  constructor(props) {
+    super(props);
+  }
 
   componentDidUpdate() {
     this.loadData();
@@ -20,7 +25,7 @@ export default class Picker extends Component {
   }
 
   loadData() {
-    storage.load({
+    getStorage().load({
       key: 'notification'
     }).then(data => {
       console.log(data);
@@ -62,13 +67,14 @@ export default class Picker extends Component {
             mode="time"
             format="HH:mm"
             minuteInterval={10}
+            disabled={this.props.disabled2}
             onDateChange={(time) => {
               this.setState({
                 time,
                 timeChanged: true
               });
               let timestamp = this.compareTimes(new Date().getTime(), this.state.time);
-              storage.save({
+              getStorage().save({
                 key: 'notification',
                 rawData: {
                   timestamp,
@@ -83,9 +89,3 @@ export default class Picker extends Component {
     }
   }
 }
-
-const storage = new Storage({
-  storageBackend: AsyncStorage,
-  defaultExpires: null,
-  enableCache: false
-});

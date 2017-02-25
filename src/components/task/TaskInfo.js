@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View,Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
 import {Button} from 'native-base';
 
@@ -9,7 +9,7 @@ function TaskInfo(props) {
         <Text style={styles.text}>{props.minutes} minutes worked today</Text>
         <Button style={styles.button} bordered small onPress={props.handleLinkClick}>Go to jira</Button>
       </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   text: {
-    flex: 0.7 
+    flex: 0.7
   },
   button: {
     justifyContent: 'flex-end'
@@ -26,6 +26,5 @@ const styles = StyleSheet.create({
 
 });
 
-
-export default TaskInfo
+export default TaskInfo;
 

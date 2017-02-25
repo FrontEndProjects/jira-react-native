@@ -20,7 +20,7 @@ export default class ContentContainer extends Component {
   }
 
   componentWillUpdate () {
-    getHours(this.props.username, this.props.password, this.props.jiraLink, this);
+    // getHours(this.props.username, this.props.password, this.props.jiraLink, this);
   }
 
   getTimeForIssue (issueId) {
@@ -41,7 +41,7 @@ export default class ContentContainer extends Component {
 
   reloadAfterPost = () => {
     this.setState({
-      reload: !this.state.reload  
+      reload: !this.state.reload
     });
   }
 

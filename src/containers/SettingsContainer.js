@@ -1,23 +1,62 @@
 import React, { Component } from 'react';
 import { Container, Content, Text } from 'native-base';
 
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import Picker from '../components/settings/Picker';
 import EnableNotification from '../components/settings/EnableNotification';
 import RememberPassword from '../components/settings/rememberPassword';
 
+import getStorage from '../storage/getStorage';
+
 export default class SettingsContainer extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showPicker: false
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+
+    this.check();
+  }
+
+  check() {
+    getStorage().load({
+      key: 'notificationEnable'
+    }).then(data => {
+      console.log(data);
+      this.state = {
+        showPicker: data.enable
+      };
+    }).catch(error => {
+      console.log('Error: ', error);
+      this.state = {
+        showPicker: false
+      };
+    });
+  }
+
+  handleClick = () =>  {
+    console.log('1',this.state.showPicker)
+      this.setState({
+        showPicker: !this.state.showPicker
+      });
+
+  };
+
   render() {
     return (
       <Container>
         <Content style={styles.content}>
           <View style={styles.settingSection}>
             <Text style={styles.text}>Enable notifications</Text>
-            <EnableNotification style={styles.checkBox} />
+            <EnableNotification style={styles.checkBox} myFunc={this.handleClick} />
           </View>
           <View style={styles.settingSection}>
             <Text style={styles.text}>Notification time</Text>
-            <Picker />
+              <Picker disabled2={this.state.showPicker} />
           </View>
           <View style={styles.settingSection}>
             <Text style={styles.text}>Interval</Text>
@@ -55,6 +94,6 @@ const styles = StyleSheet.create({
   smallText: {
     fontSize: 10,
     lineHeight: 12,
-    color: 'red' 
+    color: 'red'
   }
 });

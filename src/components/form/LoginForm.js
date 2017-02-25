@@ -7,7 +7,7 @@ function LoginForm(props) {
     <Content>
       <InputGroup>
         <Input
-          placeholder={props.login ? props.login : "Enter your jira login" }
+          placeholder={props.login ? props.login : 'Enter your jira login' }
           onChangeText={props.handleLoginInput}
         />
       </InputGroup>
@@ -20,7 +20,7 @@ function LoginForm(props) {
       </InputGroup>
       <InputGroup>
         <Input
-          placeholder={props.jiraLink ? props.jiraLink : "Enter url to your jira" }
+          placeholder={props.jiraLink ? props.jiraLink : 'Enter url to your jira' }
           onChangeText={props.handleJiraLinkInput}
         />
       </InputGroup>
@@ -29,4 +29,4 @@ function LoginForm(props) {
   );
 }
 
-export default LoginForm
+export default LoginForm;

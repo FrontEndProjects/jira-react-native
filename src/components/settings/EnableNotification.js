@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
-import { AsyncStorage, View } from 'react-native';
-import Storage from 'react-native-storage';
+import { View } from 'react-native';
 
 import { CheckBox } from 'native-base';
 
 import Notification from '../../notifications/Notification';
+
+import getStorage from '../../storage/getStorage';
 
 export default class EnableNotification extends Component {
 
@@ -21,7 +22,7 @@ export default class EnableNotification extends Component {
   }
 
   loadData() {
-    storage.load({
+    getStorage().load({
       key: 'notificationEnable'
     }).then(data => {
       console.log(data);
@@ -43,7 +44,8 @@ export default class EnableNotification extends Component {
           checked={this.state.checkbox}
           onPress={() => {
             this.setState({checkbox: !this.state.checkbox});
-            storage.save({
+            this.props.myFunc();
+            getStorage().save({
               key: 'notificationEnable',
               rawData: {
                 enable: !this.state.checkbox
@@ -59,9 +61,3 @@ export default class EnableNotification extends Component {
     );
   }
 }
-
-const storage = new Storage({
-  storageBackend: AsyncStorage,
-  defaultExpires: null,
-  enableCache: false
-});
