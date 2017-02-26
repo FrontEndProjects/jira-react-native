@@ -3,18 +3,32 @@ import FCM, { FCMEvent } from 'react-native-fcm';
 
 import getStorage from '../storage/getStorage';
 
+import moment from 'moment';
+
 export default class Notification extends Component {
+
+  compareTimes(currentTime, currentStateTimestamp) {
+    if (currentTime > currentStateTimestamp) {
+      return moment(currentStateTimestamp, 'x').add(1, 'days').format('x');
+    } else {
+      return currentStateTimestamp;
+    }
+  }
 
   componentDidUpdate() {
     getStorage().load({
       key: 'notification'
     }).then(data => {
       if (this.props.timing) {
+        console.log(new Date().getTime());
+        console.log(Number(data.timestamp));
+        let timestamp = this.compareTimes(new Date().getTime(), Number(data.timestamp));
+        console.log('Timestamp: ', timestamp);
         FCM.scheduleLocalNotification({
-          fire_date: Number(data.timestamp),
+          fire_date: Number(timestamp),
           id: 'user_notification1',
           body: 'test',
-          title: 'test',
+          title: 'green',
           color: 'red',
           // repeat_interval: 'minute',
           show_in_foreground: true

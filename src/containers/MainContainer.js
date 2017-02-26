@@ -5,16 +5,18 @@ import LoginContainer from './LoginContainer';
 import ContentContainer from './ContentContainer';
 import SettingsContainer from './SettingsContainer';
 
-import { Container, Content, Tabs } from 'native-base';
+import {Container, Content, Tabs} from 'native-base';
 
 import Spinner from 'react-native-loading-spinner-overlay';
-import { View, AsyncStorage } from 'react-native';
+import {View, AsyncStorage} from 'react-native';
 
 import myTheme from '../../Themes/myTheme';
 
+import getStorage from '../storage/getStorage';
+
 export default class MainContainer extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       isLogged: false,
@@ -24,16 +26,23 @@ export default class MainContainer extends Component {
       jiraLink: '',
       errorText: '',
       progress: false,
-      visible: false
+      visible: false,
+      firstUseApp: true
     };
 
     this.handleLoginInput = this.handleLoginInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
     this.handleJiraLinkInput = this.handleJiraLinkInput.bind(this);
     this.handleLoginButton = this.handleLoginButton.bind(this);
+
+    getStorage().load({
+      key: 'firstUseApp'
+    })
+    .then(() => this.setState({ firstUse: false }))
+    .catch(() => getStorage().save({ key: 'firstUseApp' }));
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.loadInitialState().done();
   }
 
@@ -61,7 +70,7 @@ export default class MainContainer extends Component {
     }
   }
 
-  handlePasswordInput (e) {
+  handlePasswordInput(e) {
     this.setState({
       password: e
     });
@@ -78,7 +87,7 @@ export default class MainContainer extends Component {
     }
   }
 
-  handleLoginButton () {
+  handleLoginButton() {
     this.setState({
       progress: true,
       visible: true
@@ -87,7 +96,7 @@ export default class MainContainer extends Component {
     getIssues(this.state.login, this.state.password, this.state.jiraLink, this);
   }
 
-  render () {
+  render() {
     if (this.state.progress) {
       return (
         <View style={{flex: 1}}>

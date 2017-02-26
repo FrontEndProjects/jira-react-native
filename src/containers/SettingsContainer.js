@@ -14,34 +14,25 @@ export default class SettingsContainer extends Component {
     super(props);
 
     this.state = {
-      showPicker: false
+      switchNotificationOn: false
     };
 
     this.handleClick = this.handleClick.bind(this);
 
-    this.check();
+    this.checkNotificationIsEnable();
   }
 
-  check() {
+  checkNotificationIsEnable() {
     getStorage().load({
-      key: 'notificationEnable'
-    }).then(data => {
-      console.log(data);
-      this.state = {
-        showPicker: data.enable
-      };
-    }).catch(error => {
-      console.log('Error: ', error);
-      this.state = {
-        showPicker: false
-      };
-    });
+      key: 'switchNotificationOn'
+    })
+    .then(data => { this.state = { switchNotificationOn: data.enable }; })
+    .catch(() => { this.state = { switchNotificationOn: false }; });
   }
 
   handleClick = () => {
-    console.log('1', this.state.showPicker);
     this.setState({
-      showPicker: !this.state.showPicker
+      switchNotificationOn: !this.state.switchNotificationOn
     });
   };
 
@@ -51,11 +42,11 @@ export default class SettingsContainer extends Component {
         <Content style={styles.content}>
           <View style={styles.settingSection}>
             <Text style={styles.text}>Enable notifications</Text>
-            <EnableNotification style={styles.checkBox} myFunc={this.handleClick} />
+            <EnableNotification style={styles.checkBox} switch={this.handleClick} />
           </View>
           <View style={styles.settingSection}>
             <Text style={styles.text}>Notification time</Text>
-              <Picker disabled2={this.state.showPicker} />
+              <Picker disabled={!this.state.switchNotificationOn} />
           </View>
           <View style={styles.settingSection}>
             <Text style={styles.text}>Remember my password</Text>

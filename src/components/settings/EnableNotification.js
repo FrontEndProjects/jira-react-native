@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {View, Switch} from 'react-native';
+import { View, Switch } from 'react-native';
 
 import Notification from '../../notifications/Notification';
 
@@ -21,29 +21,21 @@ export default class EnableNotification extends Component {
 
   loadData() {
     getStorage().load({
-      key: 'notificationEnable'
-    }).then(data => {
-      console.log(data);
-      this.state = {
-        switchOn: data.enable
-      };
-    }).catch(error => {
-      console.log('Error: ', error);
-      this.state = {
-        switchOn: false
-      };
-    });
+      key: 'switchNotificationOn'
+    })
+    .then(data => { this.state = { switchOn: data.enable }; })
+    .catch(() => { this.state = { switchOn: false }; });
   }
 
   render() {
     return (
       <View>
         <Switch
-          onValueChange={(value) => {
+          onValueChange={value => {
             this.setState({switchOn: value});
-            this.props.myFunc();
+            this.props.switch();
             getStorage().save({
-              key: 'notificationEnable',
+              key: 'switchNotificationOn',
               rawData: {
                 enable: !this.state.switchOn
               }
