@@ -32,6 +32,8 @@ node_modules/react-native/flow
 flow/
 
 [options]
+emoji=true
+
 module.system=haste
 
 esproposal.class_static_fields=enable
@@ -48,11 +50,16 @@ suppress_type=$FlowFixMe
 suppress_type=$FixMe
 
 <<<<<<< ours
+<<<<<<< ours
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(>=0\\.\\(3[0-3]\\|[1-2][0-9]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)
 suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(>=0\\.\\(3[0-3]\\|1[0-9]\\|[1-2][0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)?:? #[0-9]+
 =======
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(>=0\\.\\(3[0-7]\\|[1-2][0-9]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)
 suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(>=0\\.\\(3[0-7]\\|1[0-9]\\|[1-2][0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)?:? #[0-9]+
+>>>>>>> theirs
+=======
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(>=0\\.\\(3[0-8]\\|[1-2][0-9]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)
+suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(>=0\\.\\(3[0-8]\\|1[0-9]\\|[1-2][0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)?:? #[0-9]+
 >>>>>>> theirs
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
 
@@ -60,7 +67,11 @@ unsafe.enable_getters_and_setters=true
 
 [version]
 <<<<<<< ours
+<<<<<<< ours
 ^0.33.0
 =======
 ^0.37.0
+>>>>>>> theirs
+=======
+^0.38.0
 >>>>>>> theirs

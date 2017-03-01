@@ -4,8 +4,11 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+<<<<<<< ours
 	<key>CFBundleDisplayName</key>
 	<string>Hello App Display Name</string>
+=======
+>>>>>>> theirs
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

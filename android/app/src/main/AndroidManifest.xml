@@ -43,6 +43,7 @@
     <activity
       android:name=".MainActivity"
       android:label="@string/app_name"
+<<<<<<< ours
       android:launchMode="singleTop"
       android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
       android:screenOrientation="portrait">
@@ -57,5 +58,21 @@
     </activity>
     <activity android:name="com.facebook.react.devsupport.DevSettingsActivity"/>
   </application>
+=======
+      android:icon="@mipmap/ic_launcher"
+      android:theme="@style/AppTheme">
+      <activity
+        android:name=".MainActivity"
+        android:label="@string/app_name"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+        android:windowSoftInputMode="adjustResize">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+      </activity>
+      <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+    </application>
+>>>>>>> theirs
 
 </manifest>
