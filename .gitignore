@@ -38,16 +38,11 @@ yarn-error.log
 # BUCK
 buck-out/
 \.buckd/
-<<<<<<< ours
 android/app/libs
-<<<<<<< ours
 android/keystores/debug.keystore
 
 
 **/google-services.json
-=======
-=======
->>>>>>> theirs
 *.keystore
 
 # fastlane
@@ -60,4 +55,3 @@ android/keystores/debug.keystore
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
->>>>>>> theirs

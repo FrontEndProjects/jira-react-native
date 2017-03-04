@@ -3,6 +3,7 @@ import TaskContainer from './TaskContainer';
 import TopBar from '../components/topbar/TopBar';
 
 import getHours from '../axios/getHours';
+import getIssues from '../axios/getIssues';
 import {Container, Content} from 'native-base';
 
 export default class ContentContainer extends Component {

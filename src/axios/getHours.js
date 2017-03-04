@@ -2,13 +2,13 @@ import axios from 'axios';
 
 const createArrayWithTaskAndHours = (data) => {
   const arr = [];
+  const len = data.length;
 
-  arr.forEach(item => {
-    let secondsWorked = data[item].timeSpentSeconds;
-    let id = data[item].issue.id;
+  for (let i = 0; i < len; i++) {
+    let secondsWorked = data[i].timeSpentSeconds;
+    let id = data[i].issue.id;
     arr.push([id, secondsWorked]);
-  });
-
+  }
   return arr;
 };
 
