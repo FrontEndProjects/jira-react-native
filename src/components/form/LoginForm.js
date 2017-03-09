@@ -12,7 +12,7 @@ const LoginForm = (props) => (
     </InputGroup>
     <InputGroup>
       <Input
-        placeholder="Enter your password"
+        placeholder={props.password ? '•••••••••••••' : 'Enter your password' }
         secureTextEntry={true}
         onChangeText={props.handlePasswordInput}
       />

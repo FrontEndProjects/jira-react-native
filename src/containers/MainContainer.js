@@ -50,8 +50,10 @@ export default class MainContainer extends Component {
     try {
       let jiraLink = await AsyncStorage.getItem('jiraLink');
       let login = await AsyncStorage.getItem('login');
-      if (jiraLink !== null || login !== null) {
+      let password = await AsyncStorage.getItem('pass');
+      if (jiraLink !== null || login !== null || password !== null) {
         this.setState({jiraLink});
+        this.setState({password});
         this.setState({login});
       }
     } catch (error) {
@@ -70,10 +72,15 @@ export default class MainContainer extends Component {
     }
   }
 
-  handlePasswordInput(e) {
+  handlePasswordInput = async (e) => {
     this.setState({
       password: e
     });
+    try {
+      await AsyncStorage.setItem('pass', e);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   handleJiraLinkInput = async (e) => {
@@ -114,6 +121,7 @@ export default class MainContainer extends Component {
               handleJiraLinkInput={this.handleJiraLinkInput}
               jiraLink={this.state.jiraLink}
               login={this.state.login}
+              password={this.state.password}
               errorInfo={this.state.errorText}
             />
           </Content>

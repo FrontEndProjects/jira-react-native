@@ -18,6 +18,7 @@ const LoginContainer = (props) => (
         handleJiraLinkInput={props.handleJiraLinkInput}
         jiraLink={props.jiraLink}
         login={props.login}
+        password={props.password}
         error={props.errorInfo}
       />
     </Content>

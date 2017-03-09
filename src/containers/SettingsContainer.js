@@ -14,12 +14,15 @@ export default class SettingsContainer extends Component {
     super(props);
 
     this.state = {
-      switchNotificationOn: false
+      switchNotificationOn: false,
+      rememberPass: false
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleSwitch = this.handleSwitch.bind(this);
 
     this.checkNotificationIsEnable();
+    this.shouldRememberPassword();
   }
 
   checkNotificationIsEnable() {
@@ -30,9 +33,23 @@ export default class SettingsContainer extends Component {
     .catch(() => { this.state = { switchNotificationOn: false }; });
   }
 
+  shouldRememberPassword() {
+    getStorage().load({
+      key: 'rememberPass'
+    })
+    .then(data => { this.state = { rememberPass: data.enable }; })
+    .catch(() => { this.state = { rememberPass: false }; });
+  }
+
   handleClick = () => {
     this.setState({
       switchNotificationOn: !this.state.switchNotificationOn
+    });
+  };
+
+  handleSwitch = () => {
+    this.setState({
+      rememberPass: !this.state.rememberPass
     });
   };
 
@@ -50,7 +67,7 @@ export default class SettingsContainer extends Component {
           </View>
           <View style={styles.settingSection}>
             <Text style={styles.text}>Remember my password</Text>
-            <RememberPassword style={styles.checkBox} />
+            <RememberPassword style={styles.checkBox} switch={this.handleSwitch} />
           </View>
           <Text style={styles.smallText}>Warning! This could be dangerous. Your password will be stored in plain text in local database. This setting is not reccomended unless you know what you are doing.</Text>
         </Content>

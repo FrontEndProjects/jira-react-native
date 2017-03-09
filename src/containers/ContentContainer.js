@@ -3,7 +3,7 @@ import TaskContainer from './TaskContainer';
 import TopBar from '../components/topbar/TopBar';
 
 import getHours from '../axios/getHours';
-import getIssues from '../axios/getIssues';
+
 import {Container, Content} from 'native-base';
 
 export default class ContentContainer extends Component {
@@ -11,7 +11,6 @@ export default class ContentContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      reload: false,
       arrWithTimes: []
     };
   }
@@ -20,15 +19,11 @@ export default class ContentContainer extends Component {
     getHours(this.props.username, this.props.password, this.props.jiraLink, this);
   }
 
-  componentWillUpdate() {
-    // getHours(this.props.username, this.props.password, this.props.jiraLink, this);
-  }
-
   getTimeForIssue(issueId) {
     let timeWorked = 0;
     const that = this;
     for (let item of that.state.arrWithTimes) {
-      if (item[0] === issueId) {
+      if (String(item[0]) === issueId) {
         timeWorked += item[1];
       }
     }
@@ -40,10 +35,8 @@ export default class ContentContainer extends Component {
     return that.state.arrWithTimes.reduce((a, b) => a + b[1], 0) / 60;
   }
 
-  reloadAfterPost = () => {
-    this.setState({
-      reload: !this.state.reload
-    });
+  reloadAfterPost() {
+    getHours(this.props.username, this.props.password, this.props.jiraLink, this);
   }
 
   render() {

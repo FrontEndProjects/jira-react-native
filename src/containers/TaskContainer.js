@@ -32,9 +32,9 @@ export default class TaskContainer extends Component {
       this.setState({
         logging: true
       });
-      this.props.reloadAfterPost();
       postHours(this.props.username, this.props.password, this.props.jiraLink, this.props.userLink, this.props.link, this.state.timeToLog, this);
     }
+    setTimeout(this.props.reloadAfterPost, 1500);
   }
 
   handleInput = (num) => {
