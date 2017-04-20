@@ -20,7 +20,9 @@ export default class SettingsContainer extends Component {
 
     this.handleClick = this.handleClick.bind(this);
     this.handleSwitch = this.handleSwitch.bind(this);
+  }
 
+  componentDidMount() {
     this.checkNotificationIsEnable();
     this.shouldRememberPassword();
   }
@@ -29,16 +31,16 @@ export default class SettingsContainer extends Component {
     getStorage().load({
       key: 'switchNotificationOn'
     })
-    .then(data => { this.state = { switchNotificationOn: data.enable }; })
-    .catch(() => { this.state = { switchNotificationOn: false }; });
+    .then(data => { this.setState({ switchNotificationOn: data.enable}); })
+    .catch(() => { this.setState({ switchNotificationOn: false }); });
   }
 
   shouldRememberPassword() {
     getStorage().load({
       key: 'rememberPass'
     })
-    .then(data => { this.state = { rememberPass: data.enable }; })
-    .catch(() => { this.state = { rememberPass: false }; });
+    .then(data => { this.setState({ rememberPass: data.enable }); })
+    .catch(() => { this.setState({ rememberPass: false }); });
   }
 
   handleClick = () => {
