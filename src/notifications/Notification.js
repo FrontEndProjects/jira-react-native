@@ -27,9 +27,9 @@ export default class Notification extends Component {
         FCM.scheduleLocalNotification({
           fire_date: Number(timestamp),
           id: 'user_notification1',
-          body: 'test',
-          title: 'green',
-          color: 'red',
+          body: 'Thanks!',
+          title: 'Please log your time',
+          color: 'green',
           // repeat_interval: 'minute',
           show_in_foreground: true
         });
