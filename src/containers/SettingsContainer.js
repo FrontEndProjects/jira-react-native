@@ -18,38 +18,38 @@ export default class SettingsContainer extends Component {
       rememberPass: false
     };
 
-    this.handleClick = this.handleClick.bind(this);
-    this.handleSwitch = this.handleSwitch.bind(this);
+    this.handleNotificationSwitch = this.handleNotificationSwitch.bind(this);
+    this.handlePassSwitch = this.handlePassSwitch.bind(this);
   }
 
   componentDidMount() {
     this.checkNotificationIsEnable();
-    this.shouldRememberPassword();
+    this.checkRememberPassword();
   }
 
   checkNotificationIsEnable() {
     getStorage().load({
       key: 'switchNotificationOn'
     })
-    .then(data => { this.setState({ switchNotificationOn: data.enable}); })
+    .then(data => { this.setState({ switchNotificationOn: data.enable }); })
     .catch(() => { this.setState({ switchNotificationOn: false }); });
   }
 
-  shouldRememberPassword() {
+  checkRememberPassword() {
     getStorage().load({
       key: 'rememberPass'
     })
-    .then(data => { this.setState({ rememberPass: data.enable }); })
+    .then(data => { this.setState({ rememberPass: data.enablePass }); })
     .catch(() => { this.setState({ rememberPass: false }); });
   }
 
-  handleClick = () => {
+  handleNotificationSwitch = () => {
     this.setState({
       switchNotificationOn: !this.state.switchNotificationOn
     });
   };
 
-  handleSwitch = () => {
+  handlePassSwitch = () => {
     this.setState({
       rememberPass: !this.state.rememberPass
     });
@@ -61,7 +61,7 @@ export default class SettingsContainer extends Component {
         <Content style={styles.content}>
           <View style={styles.settingSection}>
             <Text style={styles.text}>Enable notifications</Text>
-            <EnableNotification style={styles.checkBox} switch={this.handleClick} />
+            <EnableNotification style={styles.checkBox} switch={this.handleNotificationSwitch} />
           </View>
           <View style={styles.settingSection}>
             <Text style={styles.text}>Notification time</Text>
@@ -69,7 +69,7 @@ export default class SettingsContainer extends Component {
           </View>
           <View style={styles.settingSection}>
             <Text style={styles.text}>Remember my password</Text>
-            <RememberPassword style={styles.checkBox} switch={this.handleSwitch} />
+            <RememberPassword style={styles.checkBox} switch={this.handlePassSwitch} />
           </View>
           <Text style={styles.smallText}>Warning! This could be dangerous. Your password will be stored in plain text in local database. This setting is not reccomended unless you know what you are doing.</Text>
         </Content>

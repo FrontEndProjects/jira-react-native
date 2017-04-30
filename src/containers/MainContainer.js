@@ -48,13 +48,17 @@ export default class MainContainer extends Component {
 
   loadInitialState = async () => {
     try {
-      let jiraLink = await AsyncStorage.getItem('jiraLink');
-      let login = await AsyncStorage.getItem('login');
-      let password = await AsyncStorage.getItem('pass');
-      if (jiraLink !== null || login !== null || password !== null) {
+      const jiraLink = await AsyncStorage.getItem('jiraLink');
+      const login = await AsyncStorage.getItem('login');
+      const showPass = await AsyncStorage.getItem('rememberPass');
+      const password = await AsyncStorage.getItem('pass');
+
+      if (jiraLink !== null || login !== null) {
         this.setState({jiraLink});
-        this.setState({password});
         this.setState({login});
+      }
+      if (showPass && password !== null) {
+        this.setState({password});
       }
     } catch (error) {
       console.log(error);
