@@ -39,7 +39,7 @@ export default class SettingsContainer extends Component {
     getStorage().load({
       key: 'rememberPass'
     })
-    .then(data => { this.setState({ rememberPass: data.enablePass }); })
+    .then(data => { this.setState({ rememberPass: data.enable }); })
     .catch(() => { this.setState({ rememberPass: false }); });
   }
 

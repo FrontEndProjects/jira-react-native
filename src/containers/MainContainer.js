@@ -27,6 +27,7 @@ export default class MainContainer extends Component {
       errorText: '',
       progress: false,
       visible: false,
+      showPass: false,
       firstUseApp: true
     };
 
@@ -43,21 +44,29 @@ export default class MainContainer extends Component {
   }
 
   componentDidMount() {
+    this.checkRememberPassword();
     this.loadInitialState().done();
+  }
+
+  checkRememberPassword() {
+    getStorage().load({
+      key: 'rememberPass'
+    })
+    .then(data => { this.setState({ showPass: data.enable }); })
+    .catch(() => { this.setState({ showPass: false }); });
   }
 
   loadInitialState = async () => {
     try {
       const jiraLink = await AsyncStorage.getItem('jiraLink');
       const login = await AsyncStorage.getItem('login');
-      const showPass = await AsyncStorage.getItem('rememberPass');
       const password = await AsyncStorage.getItem('pass');
 
       if (jiraLink !== null || login !== null) {
         this.setState({jiraLink});
         this.setState({login});
       }
-      if (showPass && password !== null) {
+      if (this.state.showPass && password !== null) {
         this.setState({password});
       }
     } catch (error) {
