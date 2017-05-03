@@ -59,6 +59,7 @@ export default class ContentContainer extends Component {
         reporter={elem.fields.reporter.displayName}
         reporterEmail={elem.fields.reporter.emailAddress}
         project={elem.fields.project.name}
+        taskTimeSpent={elem.fields.timespent}
         key={idx}
       />;
     });
