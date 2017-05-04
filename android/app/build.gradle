@@ -133,6 +133,7 @@ dependencies {
     compile project(':react-native-fcm')
     compile project(':react-native-vector-icons')
     compile project(':react-native-localization')
+    compile project(':react-native-background-timer')
 }
 
 // Run this once to be able to run the application with BUCK

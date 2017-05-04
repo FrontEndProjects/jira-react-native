@@ -5,6 +5,7 @@ import postHours from '../axios/postHours';
 import LogTime from '../components/task/LogTime';
 import TaskInfo from '../components/task/TaskInfo';
 import secondToHours from '../helpers/secondsToHours';
+import TaskTimer from '../components/task/TaskTimer';
 
 export default class TaskContainer extends Component {
 
@@ -55,6 +56,9 @@ export default class TaskContainer extends Component {
             <CardItem>
               <TaskInfo handleLinkClick={this.handlLinkClick} minutes={this.props.minutes} />
               <LogTime logging={this.state.logging} handlePostClick={this.handlePostClick} timeToLog={this.state.timeToLog} handleInput={this.handleInput} />
+            </CardItem>
+            <CardItem>
+              <TaskTimer />
             </CardItem>
             <CardItem>
               <Text>Total logged time in this task: {secondToHours(this.props.taskTimeSpent)} h</Text>
