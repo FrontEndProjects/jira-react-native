@@ -4,7 +4,7 @@ import { Card, CardItem, Text, Container, Content } from 'native-base';
 import postHours from '../axios/postHours';
 import LogTime from '../components/task/LogTime';
 import TaskInfo from '../components/task/TaskInfo';
-import secondToHours from '../helpers/secondsToHours';
+import secondsToTime from '../helpers/secondsToTime';
 import TaskTimer from '../components/task/TaskTimer';
 
 export default class TaskContainer extends Component {
@@ -59,14 +59,14 @@ export default class TaskContainer extends Component {
               <Text>{this.props.title}</Text>
             </CardItem>
             <CardItem>
-              <TaskInfo handleLinkClick={this.handlLinkClick} minutes={this.props.minutes} />
+              <TaskInfo handleLinkClick={this.handleLinkClick} minutes={this.props.minutes} />
               <LogTime logging={this.state.logging} handlePostClick={this.handlePostClick} timeToLog={this.state.timeToLog} handleInput={this.handleInput} disabledButton={this.state.disabledButton} />
             </CardItem>
             <CardItem>
               <TaskTimer />
             </CardItem>
             <CardItem>
-              <Text>Total logged time in this task: {secondToHours(this.props.taskTimeSpent)} h</Text>
+              <Text>Total logged time in this task: {secondsToTime(this.props.taskTimeSpent, false)}</Text>
             </CardItem>
           </Card>
         </Content>
