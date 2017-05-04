@@ -13,7 +13,8 @@ export default class TaskContainer extends Component {
     super(props);
     this.state = {
       logging: false,
-      timeToLog: '0'
+      timeToLog: '0',
+      disabledButton: true
     };
   }
 
@@ -30,20 +31,24 @@ export default class TaskContainer extends Component {
   }
 
   handlePostClick = () => {
-    if (this.state.timeToLog > 0) {
-      this.setState({
-        logging: true
-      });
-      postHours(this.props.username, this.props.password, this.props.jiraLink, this.props.userLink, this.props.link, this.state.timeToLog, this);
-    }
+    this.setState({
+      logging: true
+    });
+    postHours(this.props.username, this.props.password, this.props.jiraLink, this.props.userLink, this.props.link, this.state.timeToLog, this);
     setTimeout(this.props.reloadAfterPost, 1500);
-  }
+  };
 
   handleInput = (num) => {
     this.setState({
       timeToLog: num
     });
-  }
+
+    if ((num === '') || !(/^[1-9][0-9]*$/.test(num))) {
+      this.setState({ disabledButton: true });
+    } else {
+      this.setState({ disabledButton: false });
+    }
+  };
 
   render () {
     return (
@@ -55,7 +60,7 @@ export default class TaskContainer extends Component {
             </CardItem>
             <CardItem>
               <TaskInfo handleLinkClick={this.handlLinkClick} minutes={this.props.minutes} />
-              <LogTime logging={this.state.logging} handlePostClick={this.handlePostClick} timeToLog={this.state.timeToLog} handleInput={this.handleInput} />
+              <LogTime logging={this.state.logging} handlePostClick={this.handlePostClick} timeToLog={this.state.timeToLog} handleInput={this.handleInput} disabledButton={this.state.disabledButton} />
             </CardItem>
             <CardItem>
               <TaskTimer />
