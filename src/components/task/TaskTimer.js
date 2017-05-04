@@ -10,26 +10,38 @@ export default class TaskTimer extends Component {
     super(props);
     this.state = {
       seconds: 0,
-      timerId: null
+      timerId: null,
+      startDisabled: false,
+      stopDisabled: true
     };
   }
 
-  timer() {
+  timerStart() {
     const timerId = BackgroundTimer.setInterval(() => {
       this.tick();
     }, 1000);
 
-    this.setState({timerId});
+    this.setState({
+      timerId,
+      startDisabled: true,
+      stopDisabled: false
+    });
   }
 
   timerStop() {
     BackgroundTimer.clearTimeout(this.state.timerId);
+    this.setState({
+      startDisabled: false,
+      stopDisabled: true
+    });
   }
 
   timerReset() {
     this.timerStop();
     this.setState({
-      seconds: 0
+      seconds: 0,
+      startDisabled: false,
+      stopDisabled: true
     });
   }
 
@@ -42,8 +54,8 @@ export default class TaskTimer extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button onPress={() => { this.timer(); }}>Start</Button>
-        <Button onPress={() => { this.timerStop(); }}>Stop</Button>
+        <Button disabled={this.state.startDisabled} onPress={() => { this.timerStart(); }}>Start</Button>
+        <Button disabled={this.state.stopDisabled} onPress={() => { this.timerStop(); }}>Stop</Button>
         <Button onPress={() => { this.timerReset(); }}>Reset</Button>
         <Text>{secondsToTime(this.state.seconds)}</Text>
       </View>
