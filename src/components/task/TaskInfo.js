@@ -1,22 +1,26 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
+import secondsToTime from '../../helpers/secondsToTime';
+
 import {Button} from 'native-base';
 
 const TaskInfo = (props) => (
   <View style={styles.container}>
-    <Text style={styles.text}>{props.minutes} minutes worked today</Text>
-    <Button style={styles.button} bordered small onPress={props.handleLinkClick}>Go to Jira</Button>
+    <Text style={styles.text}>Today logged time: {secondsToTime(props.minutes * 60, false)}</Text>
+    {/*<Button bordered small onPress={props.handleLinkClick}><Text>Go to Jira</Text></Button>*/}
   </View>
 );
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   text: {
-    flex: 0.7
+    flex: 1,
+    fontSize: 15
   },
   button: {
     justifyContent: 'flex-end'
@@ -25,4 +29,3 @@ const styles = StyleSheet.create({
 });
 
 export default TaskInfo;
-

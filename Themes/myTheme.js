@@ -107,7 +107,7 @@ export default {
 
     // Header
   iosToolbarBtnColor: '#007aff',
-  toolbarDefaultBg: (Platform.OS === 'ios') ? '#F8F8F8' : '#00BCD4',
+  toolbarDefaultBg: (Platform.OS === 'ios') ? '#F8F8F8' : '#3f51b5',
   toolbarHeight: (Platform.OS === 'ios') ? 64 : 56,
   toolbarIconSize: (Platform.OS === 'ios') ? 20 : 22,
   toolbarInputColor: '#CECDD2',
@@ -123,7 +123,7 @@ export default {
   iconMargin: 7,
 
     // InputGroup
-  inputFontSize: 15,
+  inputFontSize: 25,
   inputBorderColor: '#D9D5DC',
   inputSuccessBorderColor: '#2b8339',
   inputErrorBorderColor: '#ed2f2f',
@@ -132,7 +132,7 @@ export default {
     return this.textColor;
   },
   get inputColorPlaceholder () {
-    return '#575757';
+    return '#ed2f2f';
   },
 
   inputGroupMarginBottom: 10,

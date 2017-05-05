@@ -9,8 +9,7 @@ export default (seconds, showSecond = true) => {
   if (minutes !== 0 || time !== '') {
     minutes = (minutes < 10 && time !== '') ? `0${minutes}` : String(minutes);
     time += `${minutes}m `;
-  }
-  else {
+  } else {
     time += minutes = '0m ';
   }
   if (showSecond) {

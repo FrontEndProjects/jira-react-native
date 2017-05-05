@@ -1,15 +1,16 @@
 import React from 'react';
 import LoginForm from '../components/form/LoginForm';
 
-import {Container, Content, Header, Title} from 'native-base';
+import {Container, Header, Content, Title, Body} from 'native-base';
 
 import myTheme from '../../Themes/myTheme';
 
 const LoginContainer = (props) => (
-  <Container>
-    <Content>
+    <Container>
       <Header theme={myTheme}>
-        <Title>Log In to Jira</Title>
+        <Body>
+          <Title>Log In to Jira</Title>
+        </Body>
       </Header>
       <LoginForm
         handleLoginButton={props.handleLoginButton}
@@ -21,9 +22,7 @@ const LoginContainer = (props) => (
         password={props.password}
         error={props.errorInfo}
       />
-    </Content>
-  </Container>
-
+    </Container>
 );
 
 export default LoginContainer;

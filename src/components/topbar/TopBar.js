@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import secondsToTime from '../../helpers/secondsToTime';
+import LinearGradient from 'react-native-linear-gradient';
 
 const TopBar = (props) => {
   let timeInPercent = props.allTimeLogged / 360;
@@ -8,7 +9,7 @@ const TopBar = (props) => {
     <View>
       <Text style={styles.text}>Today you have logged: {secondsToTime(props.allTimeLogged * 60, false)}</Text>
       <View style={{flex: 1, flexDirection: 'row'}}>
-        <View style={[styles.bar, {flex: timeInPercent}]}/>
+        <LinearGradient colors={['#3a7bd5', '#3a6073']} start={{x: 0.0, y: 0.0}} end={{x: 1.0, y: 1.0}} style={[styles.bar, {flex: timeInPercent}]} />
         <View style={[styles.rest, {flex: 1 - timeInPercent}]}/>
       </View>
     </View>
@@ -17,18 +18,20 @@ const TopBar = (props) => {
 
 const styles = StyleSheet.create({
   text: {
-    paddingLeft: 10,
-    paddingTop: 5
+    paddingTop: 8,
+    fontSize: 16,
+    textAlign: 'center'
   },
   bar: {
-    backgroundColor: 'steelblue',
-    height: 8,
+    backgroundColor: '#283593',
+    padding: 0,
+    height: 10,
     marginTop: 8,
     marginBottom: 8
   },
   rest: {
-    backgroundColor: 'grey',
-    height: 8,
+    backgroundColor: '#b4b4b4',
+    height: 10,
     marginTop: 8,
     marginBottom: 8
   }

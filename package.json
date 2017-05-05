@@ -1,6 +1,6 @@
 {
   "name": "JiraApp",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "author": "Irek Róg @irekrog, Filip Białek @fbialek",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -19,16 +19,19 @@
     "axios": "^0.15.2",
     "dateformat": "^1.0.12",
     "moment": "^2.16.0",
-    "native-base": "^0.5.8",
+    "native-base": "^2.1.3",
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.0",
     "react-native-background-timer": "^1.0.0",
     "react-native-datepicker": "^1.4.2",
     "react-native-fcm": "^6.0.3",
+    "react-native-linear-gradient": "^2.0.0",
     "react-native-loading-spinner-overlay": "^0.4.1",
     "react-native-localization": "^0.1.30",
     "react-native-storage": "^0.1.4",
-    "react-native-vector-icons": "^4.0.0"
+    "react-native-svg-uri": "^1.2.0",
+    "react-native-vector-icons": "^4.0.0",
+    "react-navigation": "^1.0.0-beta.9"
   },
   "jest": {
     "preset": "jest-react-native"

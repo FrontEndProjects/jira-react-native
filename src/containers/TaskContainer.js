@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { Linking } from 'react-native';
-import { Card, CardItem, Text, Container, Content } from 'native-base';
+import { Linking, View } from 'react-native';
+import { Text, Content, Button, Input, Form, Item, Label } from 'native-base';
 import postHours from '../axios/postHours';
 import LogTime from '../components/task/LogTime';
 import TaskInfo from '../components/task/TaskInfo';
@@ -51,27 +51,64 @@ export default class TaskContainer extends Component {
   };
 
   render () {
+    console.log('nav', this.props.navigation);
     return (
-      <Container>
-        <Content>
-          <Card>
-            <CardItem header>
-              <Text>{this.props.title}</Text>
-            </CardItem>
-            <CardItem>
+        <Content padder>
+          <View style={styles.cardContainer}>
+            <View>
+              <Text style={styles.cardTitle}>{this.props.title}</Text>
+              <Text style={styles.cardSubtitle}>{this.props.project}</Text>
+            </View>
+            <View>
               <TaskInfo handleLinkClick={this.handleLinkClick} minutes={this.props.minutes} />
-              <LogTime logging={this.state.logging} handlePostClick={this.handlePostClick} timeToLog={this.state.timeToLog} handleInput={this.handleInput} disabledButton={this.state.disabledButton} />
-            </CardItem>
-            <CardItem>
-              <TaskTimer />
-            </CardItem>
-            <CardItem>
-              <Text>Total logged time in this task: {secondsToTime(this.props.taskTimeSpent, false)}</Text>
-            </CardItem>
-          </Card>
+            </View>
+            <View style={{flex: 1, justifyContent: 'space-around', flexDirection: 'row', alignItems: 'center'}}>
+                <LogTime logging={this.state.logging} handlePostClick={this.handlePostClick} timeToLog={this.state.timeToLog} handleInput={this.handleInput} disabledButton={this.state.disabledButton} />
+            </View>
+            <View style={styles.divider}/>
+
+               <TaskTimer />
+                {/*<Text>Total logged time in this task: {secondsToTime(this.props.taskTimeSpent, false)}</Text>*/}
+          </View>
         </Content>
-      </Container>
     );
   }
 }
 
+const styles = {
+  cardContainer: {
+    marginTop: 5,
+    marginBottom: 5,
+    marginLeft: 2,
+    marginRight: 2,
+    padding: 16,
+    paddingTop: 0,
+    flex: 1,
+    borderWidth: 1,
+    borderRadius: 2,
+    borderColor: '#cccccc',
+    flexWrap: 'wrap',
+    shadowOpacity: 0.1,
+    shadowRadius: 0.5,
+    elevation: 1
+  },
+  cardTitle: {
+    paddingTop: 24,
+    paddingBottom: 0
+  },
+  cardSubtitle: {
+    paddingBottom: 16,
+    fontSize: 12,
+    color: '#cccccc'
+  },
+  headerSubtitle: {
+    padding: 0
+  },
+  divider: {
+    flex: 1,
+    height: 1,
+    backgroundColor: 'transparent',
+    marginTop: 16,
+    marginBottom: 16
+  }
+};

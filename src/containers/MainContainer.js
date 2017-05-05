@@ -1,18 +1,21 @@
 import React, {Component} from 'react';
 import getIssues from '../axios/getIssues';
+import getUserInfo from '../axios/getUserInfo';
 
 import LoginContainer from './LoginContainer';
 import ContentContainer from './ContentContainer';
 import SettingsContainer from './SettingsContainer';
 
-import {Container, Content, Tabs} from 'native-base';
+import {Container, Content, Tabs, Tab, Header, Body, Title, Right} from 'native-base';
 
 import Spinner from 'react-native-loading-spinner-overlay';
-import {View, AsyncStorage} from 'react-native';
+import {View, AsyncStorage, Image} from 'react-native';
 
 import myTheme from '../../Themes/myTheme';
 
 import getStorage from '../storage/getStorage';
+
+import SvgUri from 'react-native-svg-uri';
 
 export default class MainContainer extends Component {
 
@@ -28,7 +31,9 @@ export default class MainContainer extends Component {
       progress: false,
       visible: false,
       showPass: false,
-      firstUseApp: true
+      firstUseApp: true,
+      userInfo: '',
+      avatar: ''
     };
 
     this.handleLoginInput = this.handleLoginInput.bind(this);
@@ -112,7 +117,7 @@ export default class MainContainer extends Component {
       progress: true,
       visible: true
     });
-
+    getUserInfo(this.state.login, this.state.password, this.state.jiraLink, this);
     getIssues(this.state.login, this.state.password, this.state.jiraLink, this);
   }
 
@@ -125,39 +130,47 @@ export default class MainContainer extends Component {
       );
     } else if ((!this.state.progress) && (!this.state.isLogged)) {
       return (
-        <Container>
-          <Content>
-            <LoginContainer
-              handleLoginButton={this.handleLoginButton}
-              handleLoginInput={this.handleLoginInput}
-              handlePasswordInput={this.handlePasswordInput}
-              handleJiraLinkInput={this.handleJiraLinkInput}
-              jiraLink={this.state.jiraLink}
-              login={this.state.login}
-              password={this.state.password}
-              errorInfo={this.state.errorText}
-            />
-          </Content>
-        </Container>
+        <LoginContainer
+          handleLoginButton={this.handleLoginButton}
+          handleLoginInput={this.handleLoginInput}
+          handlePasswordInput={this.handlePasswordInput}
+          handleJiraLinkInput={this.handleJiraLinkInput}
+          jiraLink={this.state.jiraLink}
+          login={this.state.login}
+          password={this.state.password}
+          errorInfo={this.state.errorText}
+        />
       );
     } else if ((!this.state.progress) && (this.state.isLogged)) {
+      console.log(this.state.avatar);
       return (
-        <Container>
-          <Content>
-            <Tabs theme={myTheme}>
+        <Content>
+          <Header>
+            <Body>
+              <Title>Hello {this.state.userInfo}</Title>
+            </Body>
+            <Right>
+              <SvgUri
+                width="32"
+                height="32"
+                source={{uri: this.state.avatar}}
+              />
+            </Right>
+          </Header>
+          <Tabs theme={myTheme}>
+            <Tab heading="TASKS">
               <ContentContainer
-                tabLabel='Tasks'
                 issues={this.state.data}
                 username={this.state.login}
                 password={this.state.password}
                 jiraLink={this.state.jiraLink}
               />
-              <SettingsContainer
-                tabLabel='Settings'
-              />
-            </Tabs>
-          </Content>
-        </Container>
+            </Tab>
+            <Tab heading="SETTINGS">
+              <SettingsContainer />
+            </Tab>
+          </Tabs>
+        </Content>
       );
     }
   }
