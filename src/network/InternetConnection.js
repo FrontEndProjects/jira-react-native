@@ -23,8 +23,8 @@ export default class InternetConnection extends Component {
       this.state.fadeAnim,
       {
         toValue: 0,
-        duration: 1000,
-        delay: 2000
+        duration: 1500,
+        delay: 2500
       }
     ).start();
   };
@@ -76,7 +76,7 @@ const styles = {
   },
   text: {
     paddingTop: 4,
-    paddingBottom: 6,
+    paddingBottom: 8,
     color: '#e9e9e9',
     fontSize: 16
   }
