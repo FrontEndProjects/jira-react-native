@@ -4,7 +4,8 @@
   "author": "Irek Róg @irekrog, Filip Białek @fbialek",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "debug-apk": "node node_modules/react-native/local-cli/cli.js bundle --dev false --platform android --entry-file index.android.js --bundle-output ./android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest ./android/app/build/intermediates/res/merged/debug && cd android && gradlew assembleDebug"
   },
   "keywords": [
     "jira",
