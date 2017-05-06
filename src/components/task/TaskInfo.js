@@ -3,12 +3,9 @@ import {View, Text, StyleSheet} from 'react-native';
 
 import secondsToTime from '../../helpers/secondsToTime';
 
-import {Button} from 'native-base';
-
 const TaskInfo = (props) => (
   <View style={styles.container}>
     <Text style={styles.text}>Today logged time: {secondsToTime(props.minutes * 60, false)}</Text>
-    {/*<Button bordered small onPress={props.handleLinkClick}><Text>Go to Jira</Text></Button>*/}
   </View>
 );
 

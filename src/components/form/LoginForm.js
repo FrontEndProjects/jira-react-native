@@ -1,9 +1,6 @@
 import React from 'react';
 
-import {Content, InputGroup, Input, Button, Text, Form, Item} from 'native-base';
-import { View } from 'react-native';
-
-import myTheme from '../../../Themes/myTheme';
+import {Content, Input, Button, Text, Form, Item} from 'native-base';
 
 const LoginForm = (props) => (
   <Content padder>

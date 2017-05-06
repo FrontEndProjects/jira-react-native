@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ActivityIndicator, StyleSheet} from 'react-native';
+import { ActivityIndicator } from 'react-native';
 
 import {Item, Button, Input, Text, Form} from 'native-base';
 

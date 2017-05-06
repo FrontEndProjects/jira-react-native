@@ -15,7 +15,7 @@ export default (username, password, jiraLink, obj) => (
         avatar: response.data.avatarUrls['32x32']
       });
     })
-    .catch(error => {
+    .catch(() => {
       obj.setState({
         userInfo: '',
         avatar: ''

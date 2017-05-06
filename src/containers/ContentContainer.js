@@ -4,9 +4,7 @@ import TopBar from '../components/topbar/TopBar';
 
 import getHours from '../axios/getHours';
 
-import {Container, Content, Header, Body, Title} from 'native-base';
-
-import { View } from 'react-native';
+import {Content} from 'native-base';
 
 export default class ContentContainer extends Component {
 
@@ -43,19 +41,16 @@ export default class ContentContainer extends Component {
 
   render() {
     let issues = this.props.issues;
-    console.log(issues);
     let that = this;
     let allTimeLogged = that.getAllLoggedTime();
     let Cards = issues.map((elem, idx) => {
       let minutes = that.getTimeForIssue(elem.id);
-      console.log(elem);
       return <TaskContainer
         reloadAfterPost={that.reloadAfterPost.bind(that)}
         title={elem.fields.summary}
         username={this.props.username}
         password={this.props.password}
         jiraLink={this.props.jiraLink}
-        avatar={elem.fields.reporter.avatarUrls['32x32']}
         userLink={elem.fields.assignee.self}
         arrWithTimes={this.state.arrWithTimes}
         minutes={minutes}
@@ -64,6 +59,8 @@ export default class ContentContainer extends Component {
         reporterEmail={elem.fields.reporter.emailAddress}
         project={elem.fields.project.name}
         taskTimeSpent={elem.fields.timespent}
+        description={elem.fields.description}
+        status={elem.fields.status.name}
         key={idx}
       />;
     });

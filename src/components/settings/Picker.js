@@ -32,7 +32,6 @@ export default class Picker extends Component {
       };
     }).catch(error => {
       console.log('Error: ', error);
-      // let timestamp = this.compareTimes(new Date().getTime(), '17:00');
       getStorage().save({
         key: 'notification',
         rawData: {
@@ -48,16 +47,6 @@ export default class Picker extends Component {
 
   convertToTimestamp(time) {
     return moment(time, 'HH:mm').format('x');
-  }
-
-  compareTimes(currentTime, setTime) {
-    console.log('current time' + currentTime + ' set time' + setTime);
-    let currentStateTimestamp = this.convertToTimestamp(setTime); // 19:40
-    if (currentTime > currentStateTimestamp) {
-      return moment(currentStateTimestamp, 'x').add(1, 'days').format('x');
-    } else {
-      return currentStateTimestamp;
-    }
   }
 
   render() {

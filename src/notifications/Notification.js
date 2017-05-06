@@ -37,7 +37,6 @@ export default class Notification extends Component {
         FCM.getScheduledLocalNotifications().then(notify => {
           console.log(notify);
           let a = new Date(notify[0].fire_date);
-          console.log(a);
         });
       }
     }).catch(err => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginForm from '../components/form/LoginForm';
 
-import {Container, Header, Content, Title, Body} from 'native-base';
+import {Container, Header, Title, Body} from 'native-base';
 
 import myTheme from '../../Themes/myTheme';
 

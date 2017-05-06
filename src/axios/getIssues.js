@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default (username, password, jiraLink, obj) => (
   axios({
-    url: `${jiraLink}/rest/api/2/search?jql=status%20in%20(Open%2C%20%22In%20Progress%22%2C%20%22To%20Do%22)%20AND%20assignee%20in%20(${username})`,
+    url: `${jiraLink}/rest/api/2/search?jql=status%20in%20(Open%2C%20%22In%20Progress%22%2C%20%22To%20Do%22%2C%20%22Reopened%22)%20AND%20assignee%20in%20(${username})`,
     auth: {
       username,
       password

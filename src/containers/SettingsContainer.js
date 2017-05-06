@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Content, Text } from 'native-base';
 
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import Picker from '../components/settings/Picker';
 import EnableNotification from '../components/settings/EnableNotification';
 import RememberPassword from '../components/settings/RememberPassword';
@@ -78,7 +78,7 @@ export default class SettingsContainer extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
   content: {
     paddingLeft: 16,
     paddingRight: 16
@@ -102,4 +102,4 @@ const styles = StyleSheet.create({
     lineHeight: 12,
     color: 'red'
   }
-});
+};

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { Linking, View } from 'react-native';
-import { Text, Content, Button, Input, Form, Item, Label } from 'native-base';
+import {Linking, View} from 'react-native';
+import {Text, Icon, Content, Button} from 'native-base';
 import postHours from '../axios/postHours';
 import LogTime from '../components/task/LogTime';
 import TaskInfo from '../components/task/TaskInfo';
@@ -9,12 +9,13 @@ import TaskTimer from '../components/task/TaskTimer';
 
 export default class TaskContainer extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       logging: false,
       timeToLog: '0',
-      disabledButton: true
+      disabledButton: true,
+      more: false
     };
   }
 
@@ -28,7 +29,7 @@ export default class TaskContainer extends Component {
         console.log('Don\'t know how to open URI: ' + href);
       }
     });
-  }
+  };
 
   handlePostClick = () => {
     this.setState({
@@ -44,33 +45,67 @@ export default class TaskContainer extends Component {
     });
 
     if ((num === '') || !(/^[1-9][0-9]*$/.test(num))) {
-      this.setState({ disabledButton: true });
+      this.setState({disabledButton: true});
     } else {
-      this.setState({ disabledButton: false });
+      this.setState({disabledButton: false});
     }
   };
 
-  render () {
-    console.log('nav', this.props.navigation);
+  render() {
     return (
-        <Content padder>
-          <View style={styles.cardContainer}>
+      <Content padder>
+        <View style={styles.cardContainer}>
+          <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
             <View>
               <Text style={styles.cardTitle}>{this.props.title}</Text>
               <Text style={styles.cardSubtitle}>{this.props.project}</Text>
             </View>
+            <Icon
+              name={ this.state.more ? 'md-arrow-dropup' : 'md-arrow-dropdown' }
+              onPress={() => this.setState({more: !this.state.more})}
+            />
+          </View>
+          {this.state.more && <View>
+            <View style={styles.divider}/>
             <View>
-              <TaskInfo handleLinkClick={this.handleLinkClick} minutes={this.props.minutes} />
+              <Text style={styles.cardSubtitleInfo}>Total logged time in this task:</Text>
+              <Text style={styles.cardTitleInfo}>{secondsToTime(this.props.taskTimeSpent, false)}</Text>
             </View>
-            <View style={{flex: 1, justifyContent: 'space-around', flexDirection: 'row', alignItems: 'center'}}>
-                <LogTime logging={this.state.logging} handlePostClick={this.handlePostClick} timeToLog={this.state.timeToLog} handleInput={this.handleInput} disabledButton={this.state.disabledButton} />
+            <View>
+              <Text style={styles.cardSubtitleInfo}>Task</Text>
+              <Text style={styles.cardTitleInfo}>{this.props.link}</Text>
+            </View>
+            <View>
+              <Text style={styles.cardSubtitleInfo}>Status</Text>
+              <Text style={styles.cardTitleInfo}>{this.props.status}</Text>
+            </View>
+            <View>
+              <Text style={styles.cardSubtitleInfo}>Reporter</Text>
+              <Text style={styles.cardTitleInfo}>{this.props.reporter}</Text>
+              <Text style={styles.cardTitleInfo}>{this.props.reporterEmail}</Text>
+            </View>
+            <View>
+              <Text style={styles.cardSubtitleInfo}>Description</Text>
+              <Text style={styles.cardTitleInfo}>{this.props.description}</Text>
             </View>
             <View style={styles.divider}/>
-
-               <TaskTimer />
-                {/*<Text>Total logged time in this task: {secondsToTime(this.props.taskTimeSpent, false)}</Text>*/}
+            <View>
+              <Button transparent small onPress={this.handleLinkClick}><Text>GO TO JIRA</Text></Button>
+            </View>
+            <View style={styles.divider}/>
+          </View>}
+          <View>
+            <TaskInfo handleLinkClick={this.handleLinkClick} minutes={this.props.minutes}/>
           </View>
-        </Content>
+          <View style={{flex: 1, justifyContent: 'space-around', flexDirection: 'row', alignItems: 'center'}}>
+            <LogTime logging={this.state.logging} handlePostClick={this.handlePostClick}
+                     timeToLog={this.state.timeToLog} handleInput={this.handleInput}
+                     disabledButton={this.state.disabledButton}/>
+          </View>
+          <View style={[styles.divider, styles.dividerTransparent]}/>
+          <TaskTimer />
+        </View>
+      </Content>
     );
   }
 }
@@ -96,8 +131,19 @@ const styles = {
     paddingTop: 24,
     paddingBottom: 0
   },
+  cardTitleInfo: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    fontSize: 15
+  },
   cardSubtitle: {
     paddingBottom: 16,
+    fontSize: 12,
+    color: '#cccccc'
+  },
+  cardSubtitleInfo: {
+    paddingBottom: 0,
+    paddingTop: 4,
     fontSize: 12,
     color: '#cccccc'
   },
@@ -107,8 +153,11 @@ const styles = {
   divider: {
     flex: 1,
     height: 1,
-    backgroundColor: 'transparent',
+    backgroundColor: '#ccc',
     marginTop: 16,
     marginBottom: 16
+  },
+  dividerTransparent: {
+    backgroundColor: 'transparent'
   }
 };

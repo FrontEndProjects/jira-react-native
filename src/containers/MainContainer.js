@@ -6,10 +6,10 @@ import LoginContainer from './LoginContainer';
 import ContentContainer from './ContentContainer';
 import SettingsContainer from './SettingsContainer';
 
-import {Container, Content, Tabs, Tab, Header, Body, Title, Right} from 'native-base';
+import {Content, Tabs, Tab, Header, Body, Title, Right} from 'native-base';
 
 import Spinner from 'react-native-loading-spinner-overlay';
-import {View, AsyncStorage, Image} from 'react-native';
+import {View, AsyncStorage} from 'react-native';
 
 import myTheme from '../../Themes/myTheme';
 
@@ -142,7 +142,6 @@ export default class MainContainer extends Component {
         />
       );
     } else if ((!this.state.progress) && (this.state.isLogged)) {
-      console.log(this.state.avatar);
       return (
         <Content>
           <Header>
@@ -158,7 +157,7 @@ export default class MainContainer extends Component {
             </Right>
           </Header>
           <Tabs theme={myTheme}>
-            <Tab heading="TASKS">
+            <Tab heading={`(${Object.keys(this.state.data).length}) TASKS`}>
               <ContentContainer
                 issues={this.state.data}
                 username={this.state.login}
