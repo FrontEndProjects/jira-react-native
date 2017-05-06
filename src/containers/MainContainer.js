@@ -6,7 +6,7 @@ import LoginContainer from './LoginContainer';
 import ContentContainer from './ContentContainer';
 import SettingsContainer from './SettingsContainer';
 
-import {Content, Tabs, Tab, Header, Body, Title, Right} from 'native-base';
+import {Container, Content, Tabs, Tab, Header, Body, Title, Right, Text} from 'native-base';
 
 import Spinner from 'react-native-loading-spinner-overlay';
 import {View, AsyncStorage} from 'react-native';
@@ -16,6 +16,8 @@ import myTheme from '../../Themes/myTheme';
 import getStorage from '../storage/getStorage';
 
 import SvgUri from 'react-native-svg-uri';
+
+import InternetConnection from '../network/InternetConnection';
 
 export default class MainContainer extends Component {
 
@@ -130,16 +132,24 @@ export default class MainContainer extends Component {
       );
     } else if ((!this.state.progress) && (!this.state.isLogged)) {
       return (
-        <LoginContainer
-          handleLoginButton={this.handleLoginButton}
-          handleLoginInput={this.handleLoginInput}
-          handlePasswordInput={this.handlePasswordInput}
-          handleJiraLinkInput={this.handleJiraLinkInput}
-          jiraLink={this.state.jiraLink}
-          login={this.state.login}
-          password={this.state.password}
-          errorInfo={this.state.errorText}
-        />
+        <Container>
+          <Header theme={myTheme}>
+            <Body>
+              <Title>Log In to Jira</Title>
+            </Body>
+          </Header>
+          <LoginContainer
+            handleLoginButton={this.handleLoginButton}
+            handleLoginInput={this.handleLoginInput}
+            handlePasswordInput={this.handlePasswordInput}
+            handleJiraLinkInput={this.handleJiraLinkInput}
+            jiraLink={this.state.jiraLink}
+            login={this.state.login}
+            password={this.state.password}
+            errorInfo={this.state.errorText}
+          />
+          <InternetConnection />
+        </Container>
       );
     } else if ((!this.state.progress) && (this.state.isLogged)) {
       return (
