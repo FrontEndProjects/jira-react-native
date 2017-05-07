@@ -4,6 +4,8 @@ import {Button, Text} from 'native-base';
 import BackgroundTimer from 'react-native-background-timer';
 import secondsToTime from '../../helpers/secondsToTime';
 
+import strings from '../../language/strings';
+
 export default class TaskTimer extends Component {
 
   constructor(props) {
@@ -54,9 +56,9 @@ export default class TaskTimer extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button disabled={this.state.startDisabled} onPress={() => { this.timerStart(); }} ><Text>Start</Text></Button>
-        <Button disabled={this.state.stopDisabled} onPress={() => { this.timerStop(); }}><Text>Stop</Text></Button>
-        <Button onPress={() => { this.timerReset(); }}><Text>Reset</Text></Button>
+        <Button disabled={this.state.startDisabled} onPress={() => { this.timerStart(); }} ><Text>{strings.start}</Text></Button>
+        <Button disabled={this.state.stopDisabled} onPress={() => { this.timerStop(); }}><Text>{strings.stop}</Text></Button>
+        <Button onPress={() => { this.timerReset(); }}><Text>{strings.reset}</Text></Button>
         <Text>{secondsToTime(this.state.seconds)}</Text>
       </View>
     );

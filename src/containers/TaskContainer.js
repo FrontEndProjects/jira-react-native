@@ -7,6 +7,8 @@ import TaskInfo from '../components/task/TaskInfo';
 import secondsToTime from '../helpers/secondsToTime';
 import TaskTimer from '../components/task/TaskTimer';
 
+import strings from '../language/strings';
+
 export default class TaskContainer extends Component {
 
   constructor(props) {
@@ -68,29 +70,29 @@ export default class TaskContainer extends Component {
           {this.state.more && <View>
             <View style={styles.divider}/>
             <View>
-              <Text style={styles.cardSubtitleInfo}>Total logged time in this task:</Text>
+              <Text style={styles.cardSubtitleInfo}>{strings.total_logged_time}:</Text>
               <Text style={styles.cardTitleInfo}>{secondsToTime(this.props.taskTimeSpent, false)}</Text>
             </View>
             <View>
-              <Text style={styles.cardSubtitleInfo}>Task</Text>
+              <Text style={styles.cardSubtitleInfo}>{strings.task}</Text>
               <Text style={styles.cardTitleInfo}>{this.props.link}</Text>
             </View>
             <View>
-              <Text style={styles.cardSubtitleInfo}>Status</Text>
+              <Text style={styles.cardSubtitleInfo}>{strings.status}</Text>
               <Text style={styles.cardTitleInfo}>{this.props.status}</Text>
             </View>
             <View>
-              <Text style={styles.cardSubtitleInfo}>Reporter</Text>
+              <Text style={styles.cardSubtitleInfo}>{strings.reporter}</Text>
               <Text style={styles.cardTitleInfo}>{this.props.reporter}</Text>
               <Text style={styles.cardTitleInfo}>{this.props.reporterEmail}</Text>
             </View>
             <View>
-              <Text style={styles.cardSubtitleInfo}>Description</Text>
+              <Text style={styles.cardSubtitleInfo}>{strings.description}</Text>
               <Text style={styles.cardTitleInfo}>{this.props.description}</Text>
             </View>
             <View style={styles.divider}/>
             <View>
-              <Button transparent small onPress={this.handleLinkClick}><Text>GO TO JIRA</Text></Button>
+              <Button transparent small onPress={this.handleLinkClick}><Text>{strings.go_to_jira}</Text></Button>
             </View>
             <View style={styles.divider}/>
           </View>}

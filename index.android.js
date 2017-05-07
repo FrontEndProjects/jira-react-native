@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { AppRegistry, BackHandler } from 'react-native';
+import { AppRegistry, BackHandler, ToastAndroid } from 'react-native';
 
 import MainContainer from './src/containers/MainContainer';
 import { Container, Content } from 'native-base';
+
+import strings from './src/language/strings';
 
 export default class JiraApp extends Component {
 
@@ -14,7 +16,10 @@ export default class JiraApp extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
   }
 
-  handleBackButton = () => (true);
+  handleBackButton = () => {
+    ToastAndroid.show(strings.press_menu_button, ToastAndroid.SHORT);
+    return true;
+  };
 
   render() {
     return (

@@ -8,6 +8,8 @@ import RememberPassword from '../components/settings/RememberPassword';
 
 import getStorage from '../storage/getStorage';
 
+import strings from '../language/strings';
+
 export default class SettingsContainer extends Component {
 
   constructor(props) {
@@ -60,18 +62,18 @@ export default class SettingsContainer extends Component {
       <Container>
         <Content style={styles.content}>
           <View style={styles.settingSection}>
-            <Text style={styles.text}>Enable notifications</Text>
+            <Text style={styles.text}>{strings.enable_notifications}</Text>
             <EnableNotification style={styles.checkBox} switch={this.handleNotificationSwitch} />
           </View>
           <View style={styles.settingSection}>
-            <Text style={styles.text}>Notification time</Text>
+            <Text style={styles.text}>{strings.notification_time}</Text>
               <Picker disabled={!this.state.switchNotificationOn} />
           </View>
           <View style={styles.settingSection}>
-            <Text style={styles.text}>Remember my password</Text>
+            <Text style={styles.text}>{strings.remember_password}</Text>
             <RememberPassword style={styles.checkBox} switch={this.handlePassSwitch} />
           </View>
-          <Text style={styles.smallText}>Warning! This could be dangerous. Your password will be stored in plain text in local database. This setting is not reccomended unless you know what you are doing.</Text>
+          <Text style={styles.smallText}>{strings.warning_remember_password}</Text>
         </Content>
       </Container>
     );

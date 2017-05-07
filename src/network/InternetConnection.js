@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { NetInfo, Text, View, Animated } from 'react-native';
 
+import strings from '../language/strings';
+
 export default class InternetConnection extends Component {
 
   constructor(props) {
@@ -23,7 +25,7 @@ export default class InternetConnection extends Component {
       this.state.fadeAnim,
       {
         toValue: 0,
-        duration: 1500,
+        duration: 2500,
         delay: 2500
       }
     ).start();
@@ -31,7 +33,7 @@ export default class InternetConnection extends Component {
 
   handleFirstConnectivityChange = (isConnected) => {
     this.setState({
-      connectText: isConnected ? 'You are connected to the Internet' : 'Offline, check your Internet connection',
+      connectText: isConnected ? strings.connect_internet : strings.disconnect_internet,
       connect: isConnected,
       fadeAnim: new Animated.Value(1)
     });

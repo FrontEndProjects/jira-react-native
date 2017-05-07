@@ -6,7 +6,7 @@ import LoginContainer from './LoginContainer';
 import ContentContainer from './ContentContainer';
 import SettingsContainer from './SettingsContainer';
 
-import {Container, Content, Tabs, Tab, Header, Body, Title, Right, Text} from 'native-base';
+import {Container, Content, Tabs, Tab, Header, Body, Title, Right} from 'native-base';
 
 import Spinner from 'react-native-loading-spinner-overlay';
 import {View, AsyncStorage} from 'react-native';
@@ -18,6 +18,8 @@ import getStorage from '../storage/getStorage';
 import SvgUri from 'react-native-svg-uri';
 
 import InternetConnection from '../network/InternetConnection';
+
+import strings from '../language/strings';
 
 export default class MainContainer extends Component {
 
@@ -135,7 +137,7 @@ export default class MainContainer extends Component {
         <Container>
           <Header theme={myTheme}>
             <Body>
-              <Title>Log In to Jira</Title>
+              <Title>{strings.login_to_jira}</Title>
             </Body>
           </Header>
           <LoginContainer
@@ -156,7 +158,7 @@ export default class MainContainer extends Component {
         <Content>
           <Header>
             <Body>
-              <Title>Hello {this.state.userInfo}</Title>
+              <Title>{`${strings.hello} ${this.state.userInfo}`}</Title>
             </Body>
             <Right>
               <SvgUri
@@ -167,7 +169,7 @@ export default class MainContainer extends Component {
             </Right>
           </Header>
           <Tabs theme={myTheme}>
-            <Tab heading={`(${Object.keys(this.state.data).length}) TASKS`}>
+            <Tab heading={`(${Object.keys(this.state.data).length}) ${strings.tasks}`}>
               <ContentContainer
                 issues={this.state.data}
                 username={this.state.login}
@@ -175,7 +177,7 @@ export default class MainContainer extends Component {
                 jiraLink={this.state.jiraLink}
               />
             </Tab>
-            <Tab heading="SETTINGS">
+            <Tab heading={strings.settings}>
               <SettingsContainer />
             </Tab>
           </Tabs>

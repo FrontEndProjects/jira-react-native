@@ -3,9 +3,11 @@ import {View, Text, StyleSheet} from 'react-native';
 
 import secondsToTime from '../../helpers/secondsToTime';
 
+import strings from '../../language/strings';
+
 const TaskInfo = (props) => (
   <View style={styles.container}>
-    <Text style={styles.text}>Today logged time: {secondsToTime(props.minutes * 60, false)}</Text>
+    <Text style={styles.text}>{strings.today_logged_time_in_task}: {secondsToTime(props.minutes * 60, false)}</Text>
   </View>
 );
 
