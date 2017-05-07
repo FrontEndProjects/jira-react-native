@@ -17,7 +17,8 @@ export default class TaskContainer extends Component {
       logging: false,
       timeToLog: '0',
       disabledButton: true,
-      more: false
+      more: false,
+      activeTask: false
     };
   }
 
@@ -56,15 +57,16 @@ export default class TaskContainer extends Component {
   render() {
     return (
       <Content padder>
-        <View style={styles.cardContainer}>
+        <View style={this.state.activeTask ? [styles.cardContainer, styles.activeTask] : styles.cardContainer}>
           <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-            <View>
+            <View style={{flex: 0.75}}>
               <Text style={styles.cardTitle}>{this.props.title}</Text>
               <Text style={styles.cardSubtitle}>{this.props.project}</Text>
             </View>
             <Icon
               name={ this.state.more ? 'md-arrow-dropup' : 'md-arrow-dropdown' }
-              onPress={() => this.setState({more: !this.state.more})}
+              onPress={() => this.setState({more: !this.state.more, activeTask: !this.state.activeTask})}
+              style={{padding: 10}}
             />
           </View>
           {this.state.more && <View>
@@ -121,13 +123,12 @@ const styles = {
     padding: 16,
     paddingTop: 0,
     flex: 1,
-    borderWidth: 1,
     borderRadius: 2,
-    borderColor: '#cccccc',
     flexWrap: 'wrap',
-    shadowOpacity: 0.1,
-    shadowRadius: 0.5,
-    elevation: 1
+    elevation: 3
+  },
+  activeTask: {
+    backgroundColor: '#E8EAF6'
   },
   cardTitle: {
     paddingTop: 24,

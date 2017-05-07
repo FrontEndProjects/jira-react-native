@@ -139,7 +139,6 @@ export default class MainContainer extends Component {
         </View>
       );
     } else if ((!this.state.progress) && (!this.state.isLogged)) {
-      console.log(this.state.jiraLink);
       return (
         <Container>
           <Header theme={myTheme}>
