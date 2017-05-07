@@ -28,8 +28,8 @@ const LoginForm = (props) => (
       </Item>
 
     </Form>
-    <Button block onPress={props.handleLoginButton}
-            style={{backgroundColor: '#3f51b5', marginTop: 16}} primary><Text>{strings.login}</Text></Button>
+    <Button disabled={props.disabledButton} block onPress={props.handleLoginButton}
+            style={{marginTop: 16}}><Text>{strings.login}</Text></Button>
 
   </Content>
 );

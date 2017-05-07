@@ -37,13 +37,9 @@ export default class MainContainer extends Component {
       showPass: false,
       firstUseApp: true,
       userInfo: '',
-      avatar: ''
+      avatar: '',
+      disabledButton: true
     };
-
-    this.handleLoginInput = this.handleLoginInput.bind(this);
-    this.handlePasswordInput = this.handlePasswordInput.bind(this);
-    this.handleJiraLinkInput = this.handleJiraLinkInput.bind(this);
-    this.handleLoginButton = this.handleLoginButton.bind(this);
 
     getStorage().load({
       key: 'firstUseApp'
@@ -78,10 +74,11 @@ export default class MainContainer extends Component {
       if (this.state.showPass && password !== null) {
         this.setState({password});
       }
+      this.validateJiraLink(this.state.jiraLink);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   handleLoginInput = async (e) => {
     this.setState({
@@ -92,7 +89,7 @@ export default class MainContainer extends Component {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   handlePasswordInput = async (e) => {
     this.setState({
@@ -103,7 +100,7 @@ export default class MainContainer extends Component {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   handleJiraLinkInput = async (e) => {
     this.setState({
@@ -114,16 +111,25 @@ export default class MainContainer extends Component {
     } catch (error) {
       console.log(error);
     }
-  }
+    this.validateJiraLink(e);
+  };
 
-  handleLoginButton() {
+  handleLoginButton = () => {
     this.setState({
       progress: true,
       visible: true
     });
     getUserInfo(this.state.login, this.state.password, this.state.jiraLink, this);
     getIssues(this.state.login, this.state.password, this.state.jiraLink, this);
-  }
+  };
+
+  validateJiraLink = (e) => {
+    if ((e === '') || !(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})/.test(e))) {
+      this.setState({disabledButton: true});
+    } else {
+      this.setState({disabledButton: false});
+    }
+  };
 
   render() {
     if (this.state.progress) {
@@ -133,6 +139,7 @@ export default class MainContainer extends Component {
         </View>
       );
     } else if ((!this.state.progress) && (!this.state.isLogged)) {
+      console.log(this.state.jiraLink);
       return (
         <Container>
           <Header theme={myTheme}>
@@ -149,6 +156,7 @@ export default class MainContainer extends Component {
             login={this.state.login}
             password={this.state.password}
             errorInfo={this.state.errorText}
+            disabledButton={this.state.disabledButton}
           />
           <InternetConnection />
         </Container>

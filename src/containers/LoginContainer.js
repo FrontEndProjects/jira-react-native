@@ -1,10 +1,6 @@
 import React from 'react';
 import LoginForm from '../components/form/LoginForm';
 
-import {Container, Header, Title, Body} from 'native-base';
-
-import myTheme from '../../Themes/myTheme';
-
 const LoginContainer = (props) => (
     <LoginForm
       handleLoginButton={props.handleLoginButton}
@@ -15,6 +11,7 @@ const LoginContainer = (props) => (
       login={props.login}
       password={props.password}
       error={props.errorInfo}
+      disabledButton={props.disabledButton}
     />
 );
 
