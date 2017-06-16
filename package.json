@@ -1,6 +1,6 @@
 {
   "name": "JiraApp",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "author": "Irek Róg @irekrog, Filip Białek @fbialek",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -23,7 +23,7 @@
     "native-base": "^2.1.3",
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.0",
-    "react-native-background-timer": "^1.0.0",
+    "react-native-background-timer": "^1.0.3",
     "react-native-datepicker": "^1.4.2",
     "react-native-fcm": "^6.0.3",
     "react-native-linear-gradient": "^2.0.0",
