@@ -1,9 +1,9 @@
 import React from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, TextInput, View } from 'react-native';
 
 import strings from '../../language/strings';
 
-import {Item, Button, Input, Text, Form} from 'native-base';
+import {Item, Button, Text, Form} from 'native-base';
 
 const LogTime = (props) => {
   let logHours = null;
@@ -15,8 +15,19 @@ const LogTime = (props) => {
   return (
     <Form style={{flex: 0.75}}>
       <Item style={{marginLeft: 0}}>
-        <Input keyboardType='numeric' placeholder={strings.enter_minutes_to_log}
-               onChangeText={props.handleInput} style={{marginTop: 5, fontSize: 14, paddingBottom: 0}}/>
+        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', width: 150}}>
+          <TextInput keyboardType='numeric'
+                     placeholder={strings.hours}
+                     underlineColorAndroid='transparent'
+                     onChangeText={props.handleInputHours}
+                     style={{width: 70, marginTop: 5, fontSize: 14, paddingBottom: 0}}/>
+
+          <TextInput keyboardType='numeric'
+                     placeholder={strings.minutes}
+                     underlineColorAndroid='transparent'
+                     onChangeText={props.handleInputMinutes}
+                     style={{width: 70, marginTop: 5, fontSize: 14, paddingBottom: 0}}/>
+        </View>
       </Item>
       {logHours}
     </Form>

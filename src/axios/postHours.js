@@ -32,7 +32,7 @@ export default (username, password, jiraLink, authorLink, issueKey, minutes, obj
   })
     .then(() => {
       obj.setState({
-        timeToLog: '0',
+        timeToLog: 0,
         logging: false,
         postSuccess: true
       });
