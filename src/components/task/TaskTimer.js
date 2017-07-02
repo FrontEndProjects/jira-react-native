@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Button, Text} from 'native-base';
-import BackgroundTimer from 'react-native-background-timer';
 import secondsToTime from '../../helpers/secondsToTime';
 
 import strings from '../../language/strings';
+import getStorage from '../../storage/getStorage';
 
 export default class TaskTimer extends Component {
 
@@ -13,29 +13,88 @@ export default class TaskTimer extends Component {
     this.state = {
       seconds: 0,
       timerId: null,
+      isTicking: false,
+      check: 0,
       startDisabled: false,
       stopDisabled: true
     };
   }
 
-  timerStart() {
-    const timerId = BackgroundTimer.setInterval(() => {
-      this.tick();
-    }, 1000);
+  componentDidMount() {
+    if (!this.state.isFirstTime) {
+      const d = new Date();
+      const timeStamp = d.getTime();
+      getStorage()
+        .load({
+          key: 'intervalStart'
+        })
+        .then(data => {
+          if (data.start === 0) {
+            this.setState({
+              seconds: 0,
+              isFirstTime: false
+            });
+          } else {
+            this.setState({
+              seconds: Math.round((timeStamp - data.start) / 1000),
+              isFirstTime: false
+            });
+          }
+          if (data.isTicking) {
+            this.setState({
+              isTicking: true
+            });
+            clearInterval(this.state.interval);
+            const interval = setInterval(this.tick, 1000);
+            this.setState({
+              interval
+            });
+          }
+        })
+        .catch((error) => {
+          throw error;
+        });
+    }
+  }
 
+  timerStart() {
+    const d = new Date();
+    const timeStamp = d.getTime();
+    const interval = setInterval(this.tick, 1000);
+    getStorage()
+      .save({
+        key: 'intervalStart',
+        rawData: {
+          start: timeStamp - this.state.seconds * 1000,
+          isTicking: true
+        }
+      });
     this.setState({
-      timerId,
+      start: timeStamp,
+      interval,
       startDisabled: true,
       stopDisabled: false
     });
   }
 
   timerStop() {
-    BackgroundTimer.clearTimeout(this.state.timerId);
+    const d = new Date();
+    const timeStamp = d.getTime();
+    const seconds = this.state.seconds;
+    getStorage()
+      .save({
+        key: 'intervalStart',
+        rawData: {
+          start: timeStamp - seconds * 1000,
+          isTicking: false
+        }
+      });
     this.setState({
+      stop: timeStamp,
       startDisabled: false,
       stopDisabled: true
     });
+    clearInterval(this.state.interval);
   }
 
   timerReset() {
@@ -45,21 +104,36 @@ export default class TaskTimer extends Component {
       startDisabled: false,
       stopDisabled: true
     });
+    getStorage()
+      .save({
+        key: 'intervalStart',
+        rawData: {
+          start: 0,
+          isTicking: false
+        }
+      });
   }
 
-  tick() {
-    this.setState(prevState => ({
-      seconds: prevState.seconds + 1
-    }));
+  tick = () => {
+    this.setState({
+      seconds: this.state.seconds + 1
+    });
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        <Button disabled={this.state.startDisabled} onPress={() => { this.timerStart(); }} ><Text>{strings.start}</Text></Button>
-        <Button disabled={this.state.stopDisabled} onPress={() => { this.timerStop(); }}><Text>{strings.stop}</Text></Button>
-        <Button onPress={() => { this.timerReset(); }}><Text>{strings.reset}</Text></Button>
+      <View>
+        <View style={styles.container}>
+          <Button disabled={this.state.startDisabled} onPress={() => { this.timerStart(); }} ><Text>{strings.start}</Text></Button>
+          <Button disabled={this.state.stopDisabled} onPress={() => { this.timerStop(); }}><Text>{strings.stop}</Text></Button>
+          <Button onPress={() => { this.timerReset(); }}><Text>{strings.reset}</Text></Button>
+        </View>
+      <View style={{ flex: 1, alignSelf: 'stretch', minWidth: 340 }}>
         <Text>{secondsToTime(this.state.seconds)}</Text>
+        <Text>{this.state.seconds}</Text>
+        <Text>{this.state.start}</Text>
+        <Text>{this.state.stop}</Text>
+      </View>
       </View>
     );
   }
@@ -73,4 +147,3 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around'
   }
 });
-

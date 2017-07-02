@@ -78,32 +78,32 @@ export default class TaskContainer extends Component {
               <Text style={styles.cardSubtitle}>{this.props.project}</Text>
             </View>
             <Icon
-            name={ this.state.more ? 'md-arrow-dropup' : 'md-arrow-dropdown' }
-            onPress={() => this.setState({more: !this.state.more, activeTask: !this.state.activeTask})}
-            style={{padding: 10}}
+              name={ this.state.more ? 'md-arrow-dropup' : 'md-arrow-dropdown' }
+              onPress={() => this.setState({more: !this.state.more, activeTask: !this.state.activeTask})}
+              style={{padding: 10}}
             />
           </View>
           {this.state.more && <TaskMoreInfo
-            taskTimeSpent={this.props.taskTimeSpent}
-            link={this.props.link}
-            status={this.props.status}
-            reporter={this.props.reporter}
-            reporterEmail={this.props.reporterEmail}
-            description={this.props.description}
-            handleLinkClick={this.handleLinkClick}
-            /> }
+                                taskTimeSpent={this.props.taskTimeSpent}
+                                link={this.props.link}
+                                status={this.props.status}
+                                reporter={this.props.reporter}
+                                reporterEmail={this.props.reporterEmail}
+                                description={this.props.description}
+                                handleLinkClick={this.handleLinkClick}
+          /> }
           <View>
-          <TaskInfo handleLinkClick={this.handleLinkClick} minutes={this.props.minutes}/>
+            <TaskInfo handleLinkClick={this.handleLinkClick} minutes={this.props.minutes}/>
           </View>
           <View style={{flex: 1, justifyContent: 'space-around', flexDirection: 'row', alignItems: 'center'}}>
-          <LogTime logging={this.state.logging}
-          handlePostClick={this.handlePostClick}
-          timeToLog={this.state.timeToLog}
-          handleInputMinutes={this.handleInputMinutes}
-          handleInputHours={this.handleInputHours}
-          disabledButton={this.state.disabledButton}/>
-        </View>
-        <View style={[styles.divider, styles.dividerTransparent]}/>
+            <LogTime logging={this.state.logging}
+                     handlePostClick={this.handlePostClick}
+                     timeToLog={this.state.timeToLog}
+                     handleInputMinutes={this.handleInputMinutes}
+                     handleInputHours={this.handleInputHours}
+                     disabledButton={this.state.disabledButton}/>
+          </View>
+          <View style={[styles.divider, styles.dividerTransparent]}/>
           <TaskTimer />
         </View>
       </Content>
