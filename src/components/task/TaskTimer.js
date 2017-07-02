@@ -21,22 +21,28 @@ export default class TaskTimer extends Component {
   }
 
   componentDidMount() {
+    const d = new Date();
+    const timeStamp = d.getTime();
     if (!this.state.isFirstTime) {
-      const d = new Date();
-      const timeStamp = d.getTime();
       getStorage()
-        .load({
-          key: 'intervalStart'
-        })
+        .getBatchData([
+            { key: 'intervalStart' },
+            { key: 'intervalStop' }
+        ])
         .then(data => {
-          if (data.start === 0) {
+          if (data[0].start === 0) {
             this.setState({
               seconds: 0,
               isFirstTime: false
             });
+          } else if (data[1].stop) {
+            this.setState({
+              seconds: Math.round((data[1].stop - data[0].start) / 1000),
+              isFirstTime: false
+            });
           } else {
             this.setState({
-              seconds: Math.round((timeStamp - data.start) / 1000),
+              seconds: Math.round((timeStamp - data[0].start) / 1000),
               isFirstTime: false
             });
           }
@@ -75,18 +81,31 @@ export default class TaskTimer extends Component {
       startDisabled: true,
       stopDisabled: false
     });
+    getStorage()
+      .save({
+        key: 'intervalStop',
+        rawData: {
+          stop: 0
+        }
+      });
   }
 
   timerStop() {
     const d = new Date();
     const timeStamp = d.getTime();
-    const seconds = this.state.seconds;
     getStorage()
       .save({
         key: 'intervalStart',
         rawData: {
-          start: timeStamp - seconds * 1000,
+          start: timeStamp - this.state.seconds * 1000,
           isTicking: false
+        }
+      });
+    getStorage()
+      .save({
+        key: 'intervalStop',
+        rawData: {
+          stop: timeStamp
         }
       });
     this.setState({
@@ -131,8 +150,6 @@ export default class TaskTimer extends Component {
       <View style={{ flex: 1, alignSelf: 'stretch', minWidth: 340 }}>
         <Text>{secondsToTime(this.state.seconds)}</Text>
         <Text>{this.state.seconds}</Text>
-        <Text>{this.state.start}</Text>
-        <Text>{this.state.stop}</Text>
       </View>
       </View>
     );
