@@ -14,7 +14,6 @@ export default class TaskTimer extends Component {
       seconds: 0,
       timerId: null,
       isTicking: false,
-      check: 0,
       startDisabled: false,
       stopDisabled: true
     };
@@ -23,44 +22,39 @@ export default class TaskTimer extends Component {
   componentDidMount() {
     const d = new Date();
     const timeStamp = d.getTime();
-    if (!this.state.isFirstTime) {
-      getStorage()
-        .getBatchData([
-            { key: 'intervalStart' },
-            { key: 'intervalStop' }
-        ])
-        .then(data => {
-          if (data[0].start === 0) {
-            this.setState({
-              seconds: 0,
-              isFirstTime: false
-            });
-          } else if (data[1].stop) {
-            this.setState({
-              seconds: Math.round((data[1].stop - data[0].start) / 1000),
-              isFirstTime: false
-            });
-          } else {
-            this.setState({
-              seconds: Math.round((timeStamp - data[0].start) / 1000),
-              isFirstTime: false
-            });
-          }
-          if (data.isTicking) {
-            this.setState({
-              isTicking: true
-            });
-            clearInterval(this.state.interval);
-            const interval = setInterval(this.tick, 1000);
-            this.setState({
-              interval
-            });
-          }
-        })
-        .catch((error) => {
-          throw error;
-        });
-    }
+    getStorage()
+      .getBatchData([
+          { key: 'intervalStart' },
+          { key: 'intervalStop' }
+      ])
+      .then(data => {
+        if (data[0].start === 0) {
+          this.setState({
+            seconds: 0
+          });
+        } else if (data[1].stop) {
+          this.setState({
+            seconds: Math.round((data[1].stop - data[0].start) / 1000)
+          });
+        } else {
+          this.setState({
+            startDisabled: true,
+            stopDisabled: false,
+            seconds: Math.round((timeStamp - data[0].start) / 1000)
+          });
+        }
+        if (data[0].isTicking) {
+          clearInterval(this.state.interval);
+          const interval = setInterval(this.tick, 1000);
+          this.setState({
+            interval,
+            isTicking: true
+          });
+        }
+      })
+      .catch((error) => {
+        throw error;
+      });
   }
 
   timerStart() {
@@ -76,7 +70,6 @@ export default class TaskTimer extends Component {
         }
       });
     this.setState({
-      start: timeStamp,
       interval,
       startDisabled: true,
       stopDisabled: false
@@ -109,7 +102,6 @@ export default class TaskTimer extends Component {
         }
       });
     this.setState({
-      stop: timeStamp,
       startDisabled: false,
       stopDisabled: true
     });

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import TaskContainer from './TaskContainer';
+import TimerContainer from './TimerContainer';
 import TopBar from '../components/topbar/TopBar';
 
 import getHours from '../axios/getHours';
@@ -69,6 +70,7 @@ export default class ContentContainer extends Component {
         <Content>
           <TopBar allTimeLogged={allTimeLogged}/>
           {Cards}
+          <TimerContainer />
         </Content>
 
     );

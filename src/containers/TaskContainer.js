@@ -4,7 +4,6 @@ import {Text, Icon, Content} from 'native-base';
 import postHours from '../axios/postHours';
 import LogTime from '../components/task/LogTime';
 import TaskInfo from '../components/task/TaskInfo';
-import TaskTimer from '../components/task/TaskTimer';
 import TaskMoreInfo from '../components/task/TaskMoreInfo';
 
 export default class TaskContainer extends Component {
@@ -104,7 +103,6 @@ export default class TaskContainer extends Component {
                      disabledButton={this.state.disabledButton}/>
           </View>
           <View style={[styles.divider, styles.dividerTransparent]}/>
-          <TaskTimer />
         </View>
       </Content>
     );
