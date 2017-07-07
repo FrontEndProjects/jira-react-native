@@ -55,3 +55,4 @@ android/keystores/debug.keystore
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
+.metadata/
