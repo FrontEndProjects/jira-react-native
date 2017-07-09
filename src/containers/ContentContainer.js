@@ -7,6 +7,8 @@ import getHours from '../axios/getHours';
 
 import {Content} from 'native-base';
 
+import { FlatList } from 'react-native';
+
 export default class ContentContainer extends Component {
 
   constructor(props) {
@@ -40,39 +42,41 @@ export default class ContentContainer extends Component {
     getHours(this.props.username, this.props.password, this.props.jiraLink, this);
   }
 
+  renderItem = ({item}) => {
+    let that = this;
+    let minutes = that.getTimeForIssue(item.id);
+    return <TaskContainer
+      reloadAfterPost={that.reloadAfterPost.bind(that)}
+      title={item.fields.summary}
+      username={this.props.username}
+      password={this.props.password}
+      jiraLink={this.props.jiraLink}
+      userLink={item.fields.assignee.self}
+      arrWithTimes={this.state.arrWithTimes}
+      minutes={minutes}
+      link={item.key}
+      reporter={item.fields.reporter.displayName}
+      reporterEmail={item.fields.reporter.emailAddress}
+      project={item.fields.project.name}
+      taskTimeSpent={item.fields.timespent}
+      description={item.fields.description}
+      status={item.fields.status.name}
+    />;
+  };
+
   render() {
-    let issues = this.props.issues;
     let that = this;
     let allTimeLogged = that.getAllLoggedTime();
-    let Cards = issues.map((elem, idx) => {
-      let minutes = that.getTimeForIssue(elem.id);
-      return <TaskContainer
-        reloadAfterPost={that.reloadAfterPost.bind(that)}
-        title={elem.fields.summary}
-        username={this.props.username}
-        password={this.props.password}
-        jiraLink={this.props.jiraLink}
-        userLink={elem.fields.assignee.self}
-        arrWithTimes={this.state.arrWithTimes}
-        minutes={minutes}
-        link={elem.key}
-        reporter={elem.fields.reporter.displayName}
-        reporterEmail={elem.fields.reporter.emailAddress}
-        project={elem.fields.project.name}
-        taskTimeSpent={elem.fields.timespent}
-        description={elem.fields.description}
-        status={elem.fields.status.name}
-        key={idx}
-      />;
-    });
 
     return (
-        <Content>
-          <TopBar allTimeLogged={allTimeLogged}/>
-          {Cards}
-          <TimerContainer />
-        </Content>
-
+      <Content>
+        <TopBar allTimeLogged={allTimeLogged}/>
+        <FlatList
+          data={this.props.issues}
+          renderItem={this.renderItem}
+        />
+        <TimerContainer/>
+      </Content>
     );
   }
 }
