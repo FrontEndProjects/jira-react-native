@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import TaskContainer from './TaskContainer';
-import TimerContainer from './TimerContainer';
 import TopBar from '../components/topbar/TopBar';
 
 import getHours from '../axios/getHours';
 
 import {Content} from 'native-base';
 
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 
 export default class ContentContainer extends Component {
 
@@ -69,14 +68,13 @@ export default class ContentContainer extends Component {
     let allTimeLogged = that.getAllLoggedTime();
 
     return (
-      <Content>
+      <View>
         <TopBar allTimeLogged={allTimeLogged}/>
         <FlatList
           data={this.props.issues}
           renderItem={this.renderItem}
         />
-        <TimerContainer/>
-      </Content>
+      </View>
     );
   }
 }

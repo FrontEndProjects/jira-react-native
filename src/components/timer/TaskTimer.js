@@ -133,15 +133,14 @@ export default class TaskTimer extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{paddingTop: 20, paddingBottom: 20}}>
         <View style={styles.container}>
           <Button disabled={this.state.startDisabled} onPress={() => { this.timerStart(); }} ><Text>{strings.start}</Text></Button>
           <Button disabled={this.state.stopDisabled} onPress={() => { this.timerStop(); }}><Text>{strings.stop}</Text></Button>
           <Button onPress={() => { this.timerReset(); }}><Text>{strings.reset}</Text></Button>
         </View>
-      <View style={{ flex: 1, alignSelf: 'stretch', minWidth: 340 }}>
+      <View style={{ flex: 1, alignSelf: 'stretch', minWidth: 340, justifyContent: 'center', alignItems: 'center' }}>
         <Text>{secondsToTime(this.state.seconds)}</Text>
-        <Text>{this.state.seconds}</Text>
       </View>
       </View>
     );
@@ -153,6 +152,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    marginBottom: 20
   }
 });

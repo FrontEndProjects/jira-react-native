@@ -1,15 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import TaskTimer from '../components/timer/TaskTimer';
 
-export default class ContentContainer extends Component {
+const ContentContainer = () => (
+  <TaskTimer />
+);
 
-  // constructor(props) {
-  //   super(props);
-  // }
-
-  render() {
-    return (
-        <TaskTimer />
-    );
-  }
-}
+export default ContentContainer;

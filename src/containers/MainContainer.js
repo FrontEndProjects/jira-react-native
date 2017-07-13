@@ -21,6 +21,8 @@ import InternetConnection from '../network/InternetConnection';
 
 import strings from '../language/strings';
 
+import TimerContainer from './TimerContainer';
+
 export default class MainContainer extends Component {
 
   constructor(props) {
@@ -177,6 +179,7 @@ export default class MainContainer extends Component {
           </Header>
           <Tabs theme={myTheme}>
             <Tab heading={`(${Object.keys(this.state.data).length}) ${strings.tasks}`}>
+              <TimerContainer />
               <ContentContainer
                 issues={this.state.data}
                 username={this.state.login}
