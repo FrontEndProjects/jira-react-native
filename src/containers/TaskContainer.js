@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Linking, View} from 'react-native';
-import {Text, Icon, Content} from 'native-base';
+import {Text, Icon} from 'native-base';
 import postHours from '../axios/postHours';
 import LogTime from '../components/task/LogTime';
 import TaskInfo from '../components/task/TaskInfo';
@@ -69,7 +69,7 @@ export default class TaskContainer extends Component {
 
   render() {
     return (
-      <Content padder>
+      <View padder>
         <View style={this.state.activeTask ? [styles.cardContainer, styles.activeTask] : styles.cardContainer}>
           <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
             <View style={{flex: 0.75}}>
@@ -104,7 +104,7 @@ export default class TaskContainer extends Component {
           </View>
           <View style={[styles.divider, styles.dividerTransparent]}/>
         </View>
-      </Content>
+      </View>
     );
   }
 }
