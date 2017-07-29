@@ -15,14 +15,22 @@ export default (username, password, jiraLink, obj) => (
     if ((response.headers['x-seraph-loginreason']) === 'OK' && (response.status === 200)) {
       obj.setState({
         progress: true,
-        visible: true
+        visible: true,
+        authError: false
       });
       getUserInfo(username, password, jiraLink, obj);
       getIssues(username, password, jiraLink, obj);
+    } else {
+      obj.setState({
+        authError: true
+      });
     }
   })
   .catch(error => {
     console.log(error);
+    obj.setState({
+      authError: true
+    });
   })
 );
 

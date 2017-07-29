@@ -39,7 +39,8 @@ export default class MainContainer extends Component {
       firstUseApp: true,
       userInfo: '',
       avatar: '',
-      disabledButton: true
+      disabledButton: true,
+      authError: false
     };
 
     getStorage().load({
@@ -152,6 +153,7 @@ export default class MainContainer extends Component {
             password={this.state.password}
             errorInfo={this.state.errorText}
             disabledButton={this.state.disabledButton}
+            authError={this.state.authError}
           />
           <InternetConnection />
         </Container>

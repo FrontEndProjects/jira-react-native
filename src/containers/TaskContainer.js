@@ -69,7 +69,7 @@ export default class TaskContainer extends Component {
 
   render() {
     return (
-      <View padder>
+      <View>
         <View style={this.state.activeTask ? [styles.cardContainer, styles.activeTask] : styles.cardContainer}>
           <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
             <View style={{flex: 0.75}}>
