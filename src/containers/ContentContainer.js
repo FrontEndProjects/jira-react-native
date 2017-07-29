@@ -4,8 +4,6 @@ import TopBar from '../components/topbar/TopBar';
 
 import getHours from '../axios/getHours';
 
-import {Content} from 'native-base';
-
 import { FlatList, View } from 'react-native';
 
 export default class ContentContainer extends Component {

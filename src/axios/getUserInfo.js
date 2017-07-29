@@ -9,7 +9,6 @@ export default (username, password, jiraLink, obj) => (
     }
   })
     .then(response => {
-      console.log(response);
       obj.setState({
         userInfo: response.data.displayName,
         avatar: response.data.avatarUrls['32x32']

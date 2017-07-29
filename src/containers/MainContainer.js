@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import getIssues from '../axios/getIssues';
-import getUserInfo from '../axios/getUserInfo';
+import isAuth from '../axios/isAuthenticated';
 
 import LoginContainer from './LoginContainer';
 import ContentContainer from './ContentContainer';
@@ -117,12 +116,7 @@ export default class MainContainer extends Component {
   };
 
   handleLoginButton = () => {
-    this.setState({
-      progress: true,
-      visible: true
-    });
-    getUserInfo(this.state.login, this.state.password, this.state.jiraLink, this);
-    getIssues(this.state.login, this.state.password, this.state.jiraLink, this);
+    isAuth(this.state.login, this.state.password, this.state.jiraLink, this);
   };
 
   validateJiraLink = (e) => {
