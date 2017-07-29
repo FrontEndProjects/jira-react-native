@@ -1,6 +1,6 @@
 {
   "name": "JiraApp",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "author": "Irek Róg @irekrog, Filip Białek @fbialek",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
