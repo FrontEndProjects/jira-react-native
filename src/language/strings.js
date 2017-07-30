@@ -31,7 +31,9 @@ const strings = new LocalizedStrings({
     notification_time: 'Notification time',
     remember_password: 'Remember my password',
     warning_remember_password: 'Warning! This could be dangerous. Your password will be stored in plain text in local database. This setting is not reccomended unless you know what you are doing.',
-    login_error: 'Your username or password are incorrect. Try again.'
+    login_error: 'Your username or password are incorrect. Try again.',
+    notification_thanks: 'Thanks!',
+    notification_log_your_time: 'Please log your time'
   },
   en: {
     press_menu_button: 'Press MENU button to exit',
@@ -63,7 +65,9 @@ const strings = new LocalizedStrings({
     notification_time: 'Notification time',
     remember_password: 'Remember my password',
     warning_remember_password: 'Warning! This could be dangerous. Your password will be stored in plain text in local database. This setting is not reccomended unless you know what you are doing.',
-    login_error: 'Your username or password are incorrect. Try again.'
+    login_error: 'Your username or password are incorrect. Try again.',
+    notification_thanks: 'Thanks!',
+    notification_log_your_time: 'Please log your time'
   },
   pl: {
     press_menu_button: 'Naciśnij przycisk MENU, aby wyjść',
@@ -95,7 +99,9 @@ const strings = new LocalizedStrings({
     notification_time: 'Czas powiadomień',
     remember_password: 'Zapamiętaj hasło',
     warning_remember_password: 'Uwaga! To może być niebezpieczne. Twoje hasło będzie zapisane w bazie danych jako zwykły tekst. Włączenie tej opcji nie jest zalecane, chyba że masz świadomość, co robisz.',
-    login_error: 'Twój login lub hasło są niepoprawne. Spróbuj ponownie.'
+    login_error: 'Twój login lub hasło są niepoprawne. Spróbuj ponownie.',
+    notification_thanks: 'Dzięki!',
+    notification_log_your_time: 'Zaloguj swój czas'
   }
 });
 

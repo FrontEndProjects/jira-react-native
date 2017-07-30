@@ -9,7 +9,7 @@ export default class InternetConnection extends Component {
     super(props);
 
     this.state = {
-      isConnect: null,
+      connect: null,
       connectText: '',
       fadeAnim: new Animated.Value(1)
     };

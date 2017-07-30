@@ -5,9 +5,11 @@ import getStorage from '../storage/getStorage';
 
 import moment from 'moment';
 
+import strings from '../language/strings';
+
 export default class Notification extends Component {
 
-  compareTimes(currentTime, currentStateTimestamp) {
+  static compareTimes(currentTime, currentStateTimestamp) {
     if (currentTime > currentStateTimestamp) {
       return moment(currentStateTimestamp, 'x').add(1, 'days').format('x');
     } else {
@@ -22,15 +24,17 @@ export default class Notification extends Component {
       if (this.props.timing) {
         console.log(new Date().getTime());
         console.log(Number(data.timestamp));
-        let timestamp = this.compareTimes(new Date().getTime(), Number(data.timestamp));
+        let timestamp = Notification.compareTimes(new Date().getTime(), Number(data.timestamp));
         console.log('Timestamp: ', timestamp);
         FCM.scheduleLocalNotification({
           fire_date: Number(timestamp),
           id: 'user_notification1',
-          body: 'Thanks!',
-          title: 'Please log your time',
+          body: strings.notification_thanks,
+          title: strings.notification_log_your_time,
           color: 'green',
-          // repeat_interval: 'minute',
+          vibrate: 1000,
+          lights: true,
+          repeat_interval: 'day',
           show_in_foreground: true
         });
 
